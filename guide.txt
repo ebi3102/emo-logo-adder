@@ -1,0 +1,2 @@
+to install fabric and use it:
+    https://stackoverflow.com/questions/25474461/how-can-i-set-up-fabric-js
