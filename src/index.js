@@ -1,11 +1,60 @@
 import { fabric } from "fabric";
-import { pointer } from "./editor-objects";
+// import perspectiveAction from "./perspective";
+// import { pointer } from "./editor-objects";
 
+function getQuadraticBezierXYatT(start_point, control_point, end_point, T) {
+
+	var pow1minusTsquared = Math.pow(1 - T, 2),
+		powTsquared = Math.pow(T, 2);
+
+	var x = pow1minusT_squared * start_point.x + 2 * (1 - T) * T * control_point.x + powTsquared * end_point.x,
+		y = pow1minusT_squared * start_point.y + 2 * (1 - T) * T * control_point.y + powTsquared * end_point.y; 
+	
+	return {
+		x: x,
+		y: y
+	};
+}
+
+// console.log(perspectiveAction)
+const canvas2 = document.getElementById("canvas2");
+const ctx = canvas2.getContext("2d");
+const image = document.getElementById("logoImg");
+var offset_x_points = [],
+	t = 0;
+for ( ; t < image.height; t++ ) {
+	var xyAtT = getQuadraticBezierXYatT(start_point, control_point, end_point, t / image_height),
+		x = parseInt(xyAtT.x);
+
+	offset_x_points.push(x);
+}
+
+var x = 0;
+for ( ; x < image.width; x++ ) {
+  ctx.drawImage(image,
+        // clip 1 pixel wide slice from the image
+        x, 0, 1, image.height + warp_y_offset,
+        // draw that slice with a y-offset
+        x, warp_y_offset + offset_y_points[x], 1, image_height + warp_y_offset
+	);
+}
+
+  // for(var x=0;x<offsetY.length;x++){
+  //   ctx.drawImage(image,
+  //       // clip 1 pixel wide slice from the image
+  //       x,0,1,image.height,
+  //       // draw that slice with a y-offset
+  //       x,offsetY[x],1,image.height
+  //   );           
+  // }
+// ctx.drawImage(image, 100, 100, 150, 40);
+
+// image.addEventListener("load", (e) => {
+
+// });
 
 // Create a Fabric.js canvas instance
 const canvas = new fabric.Canvas('canvas');
-
-console.log(canvas.getPointer())
 
 // Load the images
 const image1Url = './images/img.webp';
@@ -24,6 +73,9 @@ let logoImg = fabric.Image.fromURL(image2Url, function(img2) {
   img2.set({ 
     left: 80, 
     top: 80,
+    // clipTo: function(ctx){
+    //   ctx.rect(dwidth / 2 - sx, dheight / 2 - sy, swidth, sheight);
+    // }
   });
   img2.scaleX = 0.4; 
   img2.scaleY = 0.4;
@@ -31,31 +83,19 @@ let logoImg = fabric.Image.fromURL(image2Url, function(img2) {
   // img2.hasborder = false;
   img2.skewX = 12;
   img2.skewY = 23;
-
-  // Create a selectable object (e.g., rectangle) around the image
-  // const selectableObject = new fabric.Rect({
-  //   name: "SkewController",
-  //   left: img2.left + (img2.width/4),
-  //   top: img2.top - 10,
-  //   width: 10,
-  //   height: 10,
-  //   fill: 'blue',
-  //   stroke: 'blue',
-  //   strokeWidth: 2,
-  //   hasControls: false,
-  //   hasBorders: false,
-  //   selectable: true
-  // });
-
-  // Group the image and the selectable object together
-  // const group = new fabric.Group([img2, selectableObject], {
-  //   selectable: true,
-  //   hasControls: false,
-  //   hasBorders: false
-  // });
   
+
+  // let offsetY=[0,1,2,3,4,5,6,5,4,3,2,1,0];
+
+  // for(var x=0;x<offsetY.length;x++){
+  //   context.drawImage(img3,
+  //       // clip 1 pixel wide slice from the image
+  //       x,0,1,img3.height,
+  //       // draw that slice with a y-offset
+  //       x,offsetY[x],1,img3.height
+  //   );           
+  // }
   canvas.add(img2);
-  
 });
 
 
