@@ -5,9 +5,17 @@ to build curve editor:
     https://programming.bogdanbucur.eu/drawing-a-curved-image-with-a-html5-canvas-and-javascript/
 
 Developing Steps:
-    - Create editor (2weeks)
-        - customize controller to add skew controller
-        - Add curve clipper to project
-        - Create all required icons for controlling
-        - track all action for saving, undo, and redo controller
-    
+    - Create editor
+        - Customize fabric js controller to add skew controller (3 days)
+        - Add curve clipper to project (2 days)
+        - Create all required icons for controlling (2 days)
+        - Track all action for saving, undo, and redo controller (4 days)
+    -design and build upload handller to upload logo and remove background and create canvas for admin (2 day)
+    - inject editor to plugin for use in admin (1 day)
+    - Store image settings into post meta to use in forntend (1 day)
+    -design and build upload handller to upload logo and remove background and create canvas for front (1 day)
+    - inject editor to plugin for use in forntend (1 day)
+    - set ajax actions to store new images on server (2 days)
+    - hook new images with image settings in order (at first save in local storage or coocki then hook to order) (3 days)
+    - tests (7 days)
+
