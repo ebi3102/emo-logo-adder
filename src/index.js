@@ -20,38 +20,6 @@ function getQuadraticBezierXYatT(start_point, control_point, end_point, T) {
 const canvas2 = document.getElementById("canvas2");
 const ctx = canvas2.getContext("2d");
 const image = document.getElementById("logoImg");
-var offset_x_points = [],
-	t = 0;
-for ( ; t < image.height; t++ ) {
-	var xyAtT = getQuadraticBezierXYatT(start_point, control_point, end_point, t / image_height),
-		x = parseInt(xyAtT.x);
-
-	offset_x_points.push(x);
-}
-
-var x = 0;
-for ( ; x < image.width; x++ ) {
-  ctx.drawImage(image,
-        // clip 1 pixel wide slice from the image
-        x, 0, 1, image.height + warp_y_offset,
-        // draw that slice with a y-offset
-        x, warp_y_offset + offset_y_points[x], 1, image_height + warp_y_offset
-	);
-}
-
-  // for(var x=0;x<offsetY.length;x++){
-  //   ctx.drawImage(image,
-  //       // clip 1 pixel wide slice from the image
-  //       x,0,1,image.height,
-  //       // draw that slice with a y-offset
-  //       x,offsetY[x],1,image.height
-  //   );           
-  // }
-// ctx.drawImage(image, 100, 100, 150, 40);
-
-// image.addEventListener("load", (e) => {
-
-// });
 
 // Create a Fabric.js canvas instance
 const canvas = new fabric.Canvas('canvas');
@@ -84,17 +52,6 @@ let logoImg = fabric.Image.fromURL(image2Url, function(img2) {
   img2.skewX = 12;
   img2.skewY = 23;
   
-
-  // let offsetY=[0,1,2,3,4,5,6,5,4,3,2,1,0];
-
-  // for(var x=0;x<offsetY.length;x++){
-  //   context.drawImage(img3,
-  //       // clip 1 pixel wide slice from the image
-  //       x,0,1,img3.height,
-  //       // draw that slice with a y-offset
-  //       x,offsetY[x],1,img3.height
-  //   );           
-  // }
   canvas.add(img2);
 });
 

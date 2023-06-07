@@ -19,3 +19,16 @@ Developing Steps:
     - hook new images with image settings in order (at first save in local storage or coocki then hook to order) (3 days)
     - tests (7 days)
 
+Developing Steps:
+    - Create editor
+        - Customize fabric js controller to add skew controller (1 days)
+        - Create all required icons for controlling (2 days)
+        - Track all action for saving, undo, and redo controller (2 days)
+    -design and build upload handller to upload logo and remove background and create canvas for admin (1 day)
+    - inject editor to plugin for use in admin (0.5 day)
+    - Store image settings into post meta to use in forntend (0.5 day)
+    -design and build upload handller to upload logo and remove background and create canvas for front (1 day)
+    - inject editor to plugin for use in forntend (0.5 day)
+    - set ajax actions to store new images on server (2 days)
+    - hook new images with image settings in order (at first save in local storage or coocki then hook to order) (1 days)
+    - tests (3 days)
