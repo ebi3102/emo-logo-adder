@@ -1,5 +1,8 @@
 import { fabric } from "fabric";
 import 'fabric-customise-controls';
+import { customiseControls, customiseCornerIcons } from "./controllers/icon-controls";
+
+fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderAll())
 
 const image = document.getElementById("logoImg");
 
@@ -26,33 +29,22 @@ fabric.Image.fromURL(image2Url, function(img2) {
   });
   img2.scaleX = 0.4; 
   img2.scaleY = 0.4;
-  img2.hasControls = true;
+  img2.hasControls = false;
+  img2.hasBorders = false;
+
+  // overwrite the prototype object based
+  
   
   canvas.add(img2);
+  canvas.setActiveObject(img2);
 });
 
-
-// canvas.on('object:moving', function(event) {
-//   console.log(canvas.getPointer(event.target));
-// });
-//   const activeObject = e.target;
-//   const skewX = activeObject.left - activeObject.leftOriginal;
-//   const skewY = activeObject.top - activeObject.topOriginal;
-//   console.log(activeObject.left)
-//   console.log(activeObject.leftOriginal)
-
-//   // console.log("SkewX: "+ skewX)
-//   // console.log("SkewY: "+ skewY)
-  
-//   // Apply skew transformation to the image
-//   // const image = activeObject.getObjects()[0]; // Assuming the image is the first object in the group
-//   // // console.log(image.name)
-//   // if (image) {
-//   //   image.skewX = skewX;
-//   //   image.skewY = skewY;
-//   //   canvas.requestRenderAll();
-//   // }
-// });
+canvas.on('selection:created', function(event) {
+    const activeObject = event.target;
+    activeObject.hasBorders = true;
+    activeObject.hasControls = true;
+    activeObject.customiseCornerIcons( customiseCornerIcons,()=>canvas.renderAll());
+});
 
 // document.getElementById('btnSave').querySelector('click', saveCanvasAsImage());
 document.getElementById('btnSave').addEventListener('click', ()=>{
