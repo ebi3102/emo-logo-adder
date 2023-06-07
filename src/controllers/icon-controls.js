@@ -26,11 +26,16 @@ const customiseControls = {
     mt: false,
     mr: {
         action: function( e, target ) {
-            // target.canvas.on('object:moving', (event)=>{
-
-            // })
+            // mouse:move
+            target.canvas.on('mouse:down', function(options) {
+                target.canvas.on('mouse:move', function(options1) {
+                    console.log("Hello")
+                    console.log(options1.e.layerX, options1.e.layerY);
+                })
+                return;
+            });
             target.skewX = 12;
-            console.log(target);
+            console.log(target.canvas);
             console.log(e);
             // console.log(e.movementX());
             // target.set( {
