@@ -1,31 +1,13 @@
 import { fabric } from "fabric";
-// import perspectiveAction from "./perspective";
-// import { pointer } from "./editor-objects";
+import 'fabric-customise-controls';
 
-function getQuadraticBezierXYatT(start_point, control_point, end_point, T) {
-
-	var pow1minusTsquared = Math.pow(1 - T, 2),
-		powTsquared = Math.pow(T, 2);
-
-	var x = pow1minusT_squared * start_point.x + 2 * (1 - T) * T * control_point.x + powTsquared * end_point.x,
-		y = pow1minusT_squared * start_point.y + 2 * (1 - T) * T * control_point.y + powTsquared * end_point.y; 
-	
-	return {
-		x: x,
-		y: y
-	};
-}
-
-// console.log(perspectiveAction)
-const canvas2 = document.getElementById("canvas2");
-const ctx = canvas2.getContext("2d");
 const image = document.getElementById("logoImg");
 
 // Create a Fabric.js canvas instance
 const canvas = new fabric.Canvas('canvas');
 
 // Load the images
-const image1Url = './images/img.webp';
+const image1Url = './images/img.png';
 const image2Url = './images/logo-2.png';
 
 fabric.Image.fromURL(image1Url, function(img1) {
@@ -36,29 +18,18 @@ fabric.Image.fromURL(image1Url, function(img1) {
   });
 });
 
-let logoImg = fabric.Image.fromURL(image2Url, function(img2) {
+fabric.Image.fromURL(image2Url, function(img2) {
   img2.name = "logo";
   img2.set({ 
     left: 80, 
     top: 80,
-    // clipTo: function(ctx){
-    //   ctx.rect(dwidth / 2 - sx, dheight / 2 - sy, swidth, sheight);
-    // }
   });
   img2.scaleX = 0.4; 
   img2.scaleY = 0.4;
   img2.hasControls = true;
-  // img2.hasborder = false;
-  img2.skewX = 12;
-  img2.skewY = 23;
   
   canvas.add(img2);
 });
-
-
-// let PTL = pointer(200,200, null,null,null ) // biuld ediot pointer Top Left corner
-// PTL.name = "ptl"
-// canvas.add(PTL)
 
 
 // canvas.on('object:moving', function(event) {
