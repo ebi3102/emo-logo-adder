@@ -1,4 +1,4 @@
-import { fabric } from "fabric";
+import skewController from "./skew-controller";
 
 export {customiseControls, customiseCornerIcons}
 
@@ -25,18 +25,10 @@ const customiseControls = {
     },
     mt: false,
     mr: {
-        action: function( e, target ) {
-            // mouse:move
-            target.canvas.on('mouse:down', function(options) {
-                target.canvas.on('mouse:move', function(options1) {
-                    console.log("Hello")
-                    console.log(options1.e.layerX, options1.e.layerY);
-                })
-                return;
-            });
-            target.skewX = 12;
+        action: function( event, target ) {
+            target.canvas.on('mouse:down', (options)=> skewController(options, target))
             console.log(target.canvas);
-            console.log(e);
+            console.log(event);
             // console.log(e.movementX());
             // target.set( {
             //     left: 200
