@@ -4,8 +4,6 @@ import { customiseControls, customiseCornerIcons } from "./controllers/icon-cont
 
 fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderAll())
 
-const image = document.getElementById("logoImg");
-
 // Create a Fabric.js canvas instance
 const canvas = new fabric.Canvas('canvas');
 
@@ -45,6 +43,8 @@ canvas.on('selection:created', function(event) {
     activeObject.hasControls = true;
     activeObject.customiseCornerIcons( customiseCornerIcons,()=>canvas.renderAll());
 });
+
+
 
 // document.getElementById('btnSave').querySelector('click', saveCanvasAsImage());
 document.getElementById('btnSave').addEventListener('click', ()=>{

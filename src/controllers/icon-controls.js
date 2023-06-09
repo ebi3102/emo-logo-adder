@@ -1,4 +1,4 @@
-import skewController from "./skew-controller";
+import {skewYController, skewXController} from "./skew-controller";
 
 export {customiseControls, customiseCornerIcons}
 
@@ -20,22 +20,17 @@ const customiseControls = {
         cursor: 'pointer'
     },
     mb: {
-        action: false,
+        action: function( event, target ) {
+            target.canvas.on('mouse:down', (options)=> skewXController(options, target))
+        },
         cursor: 'pointer'
     },
     mt: false,
     mr: {
         action: function( event, target ) {
-            target.canvas.on('mouse:down', (options)=> skewController(options, target))
-            console.log(target.canvas);
-            console.log(event);
-            // console.log(e.movementX());
-            // target.set( {
-            //     left: 200
-            // } );
-            // canvas.renderAll();
+            target.canvas.on('mouse:down', (options)=> skewYController(options, target))
         },
-        cursor: 'pointer'
+        cursor: 'crosshair'
     },
     ml:false,
     // only is hasRotatingPoint is not set to false
@@ -48,10 +43,10 @@ const customiseControls = {
 const customiseCornerIcons ={
     settings: {
         borderColor: 'black',
-        cornerSize: 25,
+        cornerSize: 10,
         cornerShape: 'rect',
-        cornerBackgroundColor: 'black',
-        cornerPadding: 10,
+        cornerBackgroundColor: '#fff',
+        cornerPadding: 2,
     },
     tl: {
         icon: 'icons/rotate.svg',
