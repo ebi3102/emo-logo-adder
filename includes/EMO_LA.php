@@ -8,6 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 use EMO_LA\EMO_LA_Enqueue;
+use EMO_LA\EMO_LA_Editor_MetaBox;
 
 final class EMO_LA
 {
@@ -40,6 +41,7 @@ final class EMO_LA
     private function classes_init()
     {
         new EMO_LA_Enqueue();
+        new EMO_LA_Editor_MetaBox();
 
     }
 
