@@ -4,6 +4,12 @@ to install fabric and use it:
 to build curve editor:
     https://programming.bogdanbucur.eu/drawing-a-curved-image-with-a-html5-canvas-and-javascript/
 
+to run new webpack config use below command:
+    npx webpack --config webpack.config.js or 
+
+To build project:
+    npm run build or npx webpack
+
 Developing Steps:
     - Create editor
         - Customize fabric js controller to add skew controller (3 days)
