@@ -51,7 +51,7 @@ if ( ! function_exists( 'emo_la_init' ) ) {
 
         // Include the main EMO_LA class.
         if ( ! class_exists( 'EMO_LA', false ) ) {
-            include_once dirname( WC_PLUGIN_FILE ) . '/includes/EMO_LA.php';
+            include_once EMO_LA_DIR . '/includes/EMO_LA.php';
         }
 
         /**
@@ -63,6 +63,9 @@ if ( ! function_exists( 'emo_la_init' ) ) {
         function emo_la() {
             return EMO_LA::instance();
         }
+
+        // Global for backwards compatibility.
+        $GLOBALS['emo_la'] = emo_la();
         
         /**
          * Load the plugin text domain for translation.
