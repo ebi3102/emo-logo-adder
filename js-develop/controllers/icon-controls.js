@@ -81,27 +81,27 @@ const customiseCornerIcons ={
         cornerPadding: 4,
     },
     tl: {
-        icon: 'icons/rotate.svg',
+        icon: '../icons/rotate.svg',
     },
     tr: {
-        icon: 'icons/resize.svg',
+        icon: '../icons/resize.svg',
     },
     bl: {
-        icon: 'icons/remove.svg',
+        icon: '../icons/remove.svg',
     },
     br: {
-        icon: 'icons/up.svg',
+        icon: '../icons/up.svg',
     },
     mb: {
-        icon: 'icons/down.svg',
+        icon: '../icons/down.svg',
     },
     mt: {
-        icon: 'icons/acute.svg',
+        icon: '../icons/acute.svg',
     },
     mr: {
-        icon: 'icons/repair-tools-cross.svg',
+        icon: '../icons/repair-tools-cross.svg',
     },
     mtr: {
-        icon: 'icons/rotate.svg',
+        icon: '../icons/rotate.svg',
     },
 }

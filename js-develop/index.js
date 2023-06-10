@@ -8,8 +8,8 @@ fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderA
 const canvas = new fabric.Canvas('canvas');
 
 // Load the images
-const image1Url = './images/img.png';
-const image2Url = './images/logo-2.png';
+const image1Url = '../images/img.png';
+const image2Url = '../images/logo-2.png';
 
 fabric.Image.fromURL(image1Url, function(img1) {
   // add background image
