@@ -2,7 +2,7 @@
     "name": "emo/emo-logo-adder",
     "autoload": {
         "psr-4": {
-            "EMOLA\\": "includes/"
+            "EMO_LA\\": "includes/"
         }
     },
     "authors": [
