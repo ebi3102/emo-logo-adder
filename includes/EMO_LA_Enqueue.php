@@ -16,14 +16,15 @@ class EMO_LA_Enqueue
 
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
+
     }
 
-    private function enqueue_scripts($hook)
+    public function enqueue_scripts($hook)
     {
-        wp_enqueue_script( 'emo-image-editor', EMO_LA_URI.'assests/js/image-editor.js',array(), true );
+        wp_enqueue_script( 'emo-image-editor', EMO_LA_URI.'assets/js/image-editor.js',array(),'1.0.0', true );
     }
 
-    private function enqueue_styles($hook)
+    public function enqueue_styles($hook)
     {
         //do somethings
     }
