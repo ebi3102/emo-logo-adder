@@ -49,18 +49,20 @@ if ( ! function_exists( 'emo_la_init' ) ) {
         
         require_once EMO_LA_DIR . '/vendor/autoload.php';
 
-        // if(is_admin()){
-	    //     // Include the autoloader that we can dynamically include the rest of the classes.
-	        
+        // Include the main EMO_LA class.
+        if ( ! class_exists( 'EMO_LA', false ) ) {
+            include_once dirname( WC_PLUGIN_FILE ) . '/includes/EMO_LA.php';
+        }
 
-        //     include_once("includes/functions/form-functions.php");
-        //     include_once("includes/functions/wp_functions.php");
-        //     include_once("includes/functions/functions-admin.php");
-        //     include_once( "includes/functions/enqueue.php" );
-
-        //     //register scripts
-        //     add_action('admin_enqueue_scripts', 'emo_bupw_scripts');
-        // }
+        /**
+         * Returns the main instance of EMO_LA.
+         *
+         * @since  1.0.0
+         * @return EMO_LA
+         */
+        function emo_la() {
+            return EMO_LA::instance();
+        }
         
         /**
          * Load the plugin text domain for translation.
