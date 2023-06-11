@@ -21,9 +21,18 @@ class EMO_LA_Editor_MetaBox
         );
     }
 
-    public function metabox_callback()
+    public function metabox_callback($post)
     {
-        echo "Hello Image Edior";
+        $btnText = __("Add logo editor setting", 'emo_logo_adder');
+        if(has_post_thumbnail($post)){
+            echo "<button id='addEditorPopUp'>{$btnText}</button>";
+        }else{
+            $commentText = __('Before adding any editor settings set a feature image for this product', 'emo_logo_adder');
+            echo "<button id='addEditorPopUp' disabled>{$btnText}</button>";
+            echo "<div>{$commentText}</div>";
+        }
+        
+        
     }
 
     public function save_metabox($post_id, $post)
