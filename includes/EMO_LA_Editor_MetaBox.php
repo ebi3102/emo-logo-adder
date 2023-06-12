@@ -30,6 +30,7 @@ class EMO_LA_Editor_MetaBox
             <div class="popup-screen-locker">
                 <div class="popup-editor-container">
                     <div>
+                        <div id="emoClose" class="close-icon">&#10005;</div>
                         <img id='EMOfeatuerImage' src="<?php echo get_the_post_thumbnail_url($post) ?>" alt="" style="display:none">
                         <canvas
                             id="canvas"
@@ -38,7 +39,6 @@ class EMO_LA_Editor_MetaBox
                             style="border:1px solid #000000;">
                         </canvas>
                         <div class="btn-container">
-                            <div id="emoClose" class="emo-btn danger">Close</div>
                             <div id="emoSaveEditor" class="emo-btn success">Save</div>
                         </div>
                     </div>

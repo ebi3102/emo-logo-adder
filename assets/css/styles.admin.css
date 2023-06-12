@@ -12,7 +12,15 @@ img{max-width: 100%;}
 {display: none; position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background-color:#00000061; z-index: 10000;}
 
 .popup-editor-container{
-    display: none; width: 500px; margin: 50px auto; background-color: #fff;
+    display: none; width: 500px; margin: 50px auto; background-color: #fff; position: relative;
 }
+.close-icon{
+    color: #000;border: 1px solid #000; width: 20px;
+    font-size: 16px; border-radius: 52%;position: absolute;
+    z-index: 1;right: -10px;top: -10px;background: #fff;
+    height: 20px;text-align: center;line-height: 20px;
+    cursor: pointer;
+}
+
 
 .btn-container{display: flex; margin: 10px auto; width: 100%; justify-content: space-evenly; padding: 20px 0;}
