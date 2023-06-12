@@ -22,11 +22,18 @@ class EMO_LA_Enqueue
     public function enqueue_scripts($hook)
     {
         wp_enqueue_script( 'emo-image-editor', EMO_LA_URI.'assets/js/image-editor.js',array(),'1.0.0', true );
+        if($hook == 'post.php'){
+            wp_enqueue_script( 'admin-scripts', EMO_LA_URI.'assets/js/scripts.admin.js',array('jquery'),'1.0.0', true );
+        }
+
     }
 
     public function enqueue_styles($hook)
     {
-        //do somethings
+        wp_register_style('admin_styles',EMO_LA_URI.'assets/css/style.admin.css', array(), '1.0.0', 'all');
+        if($hook == 'post.php'){
+            wp_enqueue_style('admin_styles');
+        }
     }
 
 }
