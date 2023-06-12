@@ -31,7 +31,12 @@ class EMO_LA_Editor_MetaBox
                 <div class="popup-editor-container">
                     <div>
                         <div id="emoClose" class="close-icon">&#10005;</div>
-                        <img id='EMOfeatuerImage' src="<?php echo get_the_post_thumbnail_url($post) ?>" alt="" style="display:none">
+                        <script>
+                            const imagesData = {
+                                background: "<?php echo get_the_post_thumbnail_url($post) ?>",
+                                logo: "<?php echo EMO_LA_URI.'/assets/images/logo.png' ?>"
+                            }
+                        </script>
                         <canvas
                             id="canvas"
                             width="500"
@@ -39,12 +44,13 @@ class EMO_LA_Editor_MetaBox
                             style="border:1px solid #000000;">
                         </canvas>
                         <div class="btn-container">
+                        <div id="emoUploadlogo" class="emo-btn primary">Upload new logo</div>
                             <div id="emoSaveEditor" class="emo-btn success">Save</div>
                         </div>
                     </div>
                 </div>
-            </div><!--.side-menu-container-->
-        
+            </div><!--.popup-screen-locker-->
+
         <?php 
         }else{
             $commentText = __('Before adding any editor settings set a feature image for this product', 'emo_logo_adder');
