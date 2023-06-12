@@ -8,8 +8,10 @@ fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderA
 const canvas = new fabric.Canvas('canvas');
 
 // Load the images
-const image1Url = '../images/img.png';
-const image2Url = '../images/logo-2.png';
+// const image1Url = '../images/img.png';
+const image1Url = EMOfeatuerImage.src;
+console.log(image1Url);
+// const image2Url = '../images/logo-2.png';
 
 fabric.Image.fromURL(image1Url, function(img1) {
   // add background image
@@ -19,23 +21,23 @@ fabric.Image.fromURL(image1Url, function(img1) {
   });
 });
 
-fabric.Image.fromURL(image2Url, function(img2) {
-  img2.name = "logo";
-  img2.set({ 
-    left: 80, 
-    top: 80,
-  });
-  img2.scaleX = 0.4; 
-  img2.scaleY = 0.4;
-  img2.hasControls = false;
-  img2.hasBorders = false;
+// fabric.Image.fromURL(image2Url, function(img2) {
+//   img2.name = "logo";
+//   img2.set({ 
+//     left: 80, 
+//     top: 80,
+//   });
+//   img2.scaleX = 0.4; 
+//   img2.scaleY = 0.4;
+//   img2.hasControls = false;
+//   img2.hasBorders = false;
 
-  // overwrite the prototype object based
+//   // overwrite the prototype object based
   
   
-  canvas.add(img2);
-  canvas.setActiveObject(img2);
-});
+//   canvas.add(img2);
+//   canvas.setActiveObject(img2);
+// });
 
 canvas.on('selection:created', function(event) {
     const activeObject = event.target;

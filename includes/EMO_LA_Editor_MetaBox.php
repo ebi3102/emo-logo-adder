@@ -26,13 +26,31 @@ class EMO_LA_Editor_MetaBox
         $btnText = __("Add logo editor setting", 'emo_logo_adder');
         if(has_post_thumbnail($post)){
             echo "<button id='addEditorPopUp'>{$btnText}</button>";
+            ?>
+            <div class="popup-screen-locker">
+                <div class="popup-editor-container">
+                    <div>
+                        <img id='EMOfeatuerImage' src="<?php echo get_the_post_thumbnail_url($post) ?>" alt="" style="display:none">
+                        <canvas
+                            id="canvas"
+                            width="500"
+                            height="500"
+                            style="border:1px solid #000000;">
+                        </canvas>
+                        <div class="btn-container">
+                            <div id="emoClose" class="emo-btn danger">Close</div>
+                            <div id="emoSaveEditor" class="emo-btn success">Save</div>
+                        </div>
+                    </div>
+                </div>
+            </div><!--.side-menu-container-->
+        
+        <?php 
         }else{
             $commentText = __('Before adding any editor settings set a feature image for this product', 'emo_logo_adder');
             echo "<button id='addEditorPopUp' disabled>{$btnText}</button>";
             echo "<div>{$commentText}</div>";
         }
-        
-        
     }
 
     public function save_metabox($post_id, $post)
