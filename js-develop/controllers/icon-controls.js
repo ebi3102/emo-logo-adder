@@ -74,34 +74,37 @@ const customiseControls = {
 
 const customiseCornerIcons ={
     settings: {
-        borderColor: 'black',
+        borderColor: 'white',
         cornerSize: 18,
-        cornerShape: 'rect',
-        cornerBackgroundColor: 'transparent',
+        cornerShape: 'circle',
+        cornerBackgroundColor: 'white',
         cornerPadding: 4,
     },
     tl: {
-        icon: '../icons/rotate.svg',
+        icon: canvasData.tl,
     },
     tr: {
-        icon: '../icons/resize.svg',
+        icon: canvasData.tr,
     },
     bl: {
-        icon: '../icons/remove.svg',
+        icon: canvasData.bl,
     },
     br: {
-        icon: '../icons/up.svg',
+        icon: canvasData.br,
     },
     mb: {
-        icon: '../icons/down.svg',
+        icon: canvasData.mb,
     },
     mt: {
-        icon: '../icons/acute.svg',
+        icon: canvasData.mt,
     },
     mr: {
-        icon: '../icons/repair-tools-cross.svg',
+        icon: canvasData.mr,
+    },
+    ml: {
+        icon: canvasData.ml,
     },
     mtr: {
-        icon: '../icons/rotate.svg',
+        icon: canvasData.mtr,
     },
 }

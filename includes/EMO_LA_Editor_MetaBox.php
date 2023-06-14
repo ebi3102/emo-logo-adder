@@ -2,6 +2,8 @@
 
 //Save image edit data into this metabox
 namespace EMO_LA;
+
+use EMO_LA\Utils\EMO_LA_Icons_Render;
 class EMO_LA_Editor_MetaBox
 {
     public function __construct()
@@ -31,12 +33,16 @@ class EMO_LA_Editor_MetaBox
                 <div class="popup-editor-container">
                     <div>
                         <div id="emoClose" class="close-icon">&#10005;</div>
-                        <script>
+                        <!-- <script>
                             const imagesData = {
-                                background: "<?php echo get_the_post_thumbnail_url($post) ?>",
-                                logo: "<?php echo EMO_LA_URI.'/assets/images/logo.png' ?>"
+                                background: "<?php// echo get_the_post_thumbnail_url($post) ?>",
+                                logo: "<?php// echo EMO_LA_URI.'assets/images/logo.png' ?>"
                             }
-                        </script>
+                        </script> -->
+                        <?php 
+                        $canvasDate = new EMO_LA_Icons_Render($post);
+                        echo $canvasDate->render();
+                        ?>
                         <canvas
                             id="canvas"
                             width="500"
