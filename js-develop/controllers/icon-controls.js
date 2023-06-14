@@ -35,11 +35,11 @@ const customiseControls = {
     },
     bl: {
         action: 'scale',
-        cursor: 'nw-resize'
+        cursor: 'ne-resize'
     },
     br: {
         action: 'scale',
-        cursor: 'ne-resize'
+        cursor: 'nw-resize'
     },
     mb: {
         action: function( event, target ) {

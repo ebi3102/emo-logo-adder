@@ -74,6 +74,10 @@ canvas.on('selection:created', function(event) {
     activeObject.customiseCornerIcons( customiseCornerIcons,()=>canvas.renderAll());
 });
 
+canvas.on("object:modified", (event)=>{
+  saveData.logoData = event.target
+});
+
 document.getElementById('emoSaveEditor').addEventListener('click', ()=>{
   saveCanvasAsImage()
 });
@@ -84,11 +88,10 @@ function saveCanvasAsImage() {
     format: 'png',
     quality: 1
   });
-  console.log('New Logo', saveData);
-  console.log('Defualt Logo', canvasData.logo)
-  console.log(canvas);
-  console.log('ActiveObject: ',canvas.getActiveObject);
-  console.log('_ActiveObject: ',canvas._activeObject);
+  if(!saveData.newLog){
+    saveData.newLog = canvasData.logo;
+  }
+  console.log('Save Data', JSON.stringify(saveData));
   // You can now use 'image' to display or save the edited image
   // For example, to display the edited image in an <img> tag:
   const resultImage = new Image();
