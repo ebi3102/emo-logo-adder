@@ -7,7 +7,7 @@ fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderA
 // Create a Fabric.js canvas instance
 const canvas = new fabric.Canvas('canvas');
 
-var saveData = {};
+var saveData;
 // Load the images
 const image1Url = canvasData.background;
 const image2Url = canvasData.logo;
@@ -44,7 +44,6 @@ const admin_upload_logo = (e)=>{
   mediaLibrary.on('select', function() {
     var selectedImage = mediaLibrary.state().get('selection').first();
     var imageUrl = selectedImage.toJSON().url;
-    saveData.newLog = imageUrl;
     fabric.Image.fromURL(imageUrl, function(img3) {
         img3.name = "logo";
         img3.set({ 
@@ -75,7 +74,7 @@ canvas.on('selection:created', function(event) {
 });
 
 canvas.on("object:modified", (event)=>{
-  saveData.logoData = event.target
+  saveData = event.target
 });
 
 document.getElementById('emoSaveEditor').addEventListener('click', ()=>{
@@ -88,9 +87,6 @@ function saveCanvasAsImage() {
     format: 'png',
     quality: 1
   });
-  if(!saveData.newLog){
-    saveData.newLog = canvasData.logo;
-  }
   
   const resultImage = new Image();
   resultImage.src = image;
@@ -116,6 +112,6 @@ function saveCanvasAsImage() {
     alert(error);
     console.error(error);
   });
-  document.body.appendChild(resultImage);
+  // document.body.appendChild(resultImage);
 }
 
