@@ -32,14 +32,8 @@ class EMO_LA_Editor_MetaBox
             <div class="popup-screen-locker">
                 <div class="popup-editor-container">
                     <div>
-                        <div id="emoClose" class="close-icon">&#10005;</div>
-                        <!-- <script>
-                            const imagesData = {
-                                background: "<?php// echo get_the_post_thumbnail_url($post) ?>",
-                                logo: "<?php// echo EMO_LA_URI.'assets/images/logo.png' ?>"
-                            }
-                        </script> -->
                         <?php 
+                        // Add Icons and logo data as a script tag
                         $canvasDate = new EMO_LA_Icons_Render($post);
                         echo $canvasDate->render();
                         ?>
@@ -51,7 +45,13 @@ class EMO_LA_Editor_MetaBox
                         </canvas>
                         <div class="btn-container">
                         <div id="emoUploadlogo" class="emo-btn primary">Upload new logo</div>
-                            <div id="emoSaveEditor" class="emo-btn success">Save</div>
+                            <div
+                                id="emoSaveEditor" 
+                                class="emo-btn success" 
+                                data-nonce="<?php echo wp_create_nonce("emo_la_nonce".$post->ID); ?>"
+                                data_id = "<?php echo $post->ID ?>"
+                                data_url = "<?php echo admin_url( 'admin-ajax.php' ) ?>"
+                            >Save</div>
                         </div>
                     </div>
                 </div>
