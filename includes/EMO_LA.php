@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 use EMO_LA\EMO_LA_Enqueue;
 use EMO_LA\EMO_LA_Editor_MetaBox;
-use EMO_LA\EMO_LA_Client_Editor;
+use EMO_LA\EMO_LA_Client_Editor_Icon;
 use EMO_LA\Controllers\EMO_LA_Admin_Save;
 
 final class EMO_LA
