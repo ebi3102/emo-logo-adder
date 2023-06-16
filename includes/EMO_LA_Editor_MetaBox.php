@@ -54,7 +54,7 @@ class EMO_LA_Editor_MetaBox
                                 data_url = "<?php echo admin_url( 'admin-ajax.php' ) ?>"
                             >Save</div>
                         </div>
-                        <div id="noticeContainer"></div>
+                        <div class="notice-container" id="noticeContainer"></div>
                     </div>
                 </div>
             </div><!--.popup-screen-locker-->
