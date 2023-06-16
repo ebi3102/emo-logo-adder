@@ -28,9 +28,6 @@ class EMO_LA_Enqueue
             wp_localize_script( 'emo-image-editor', 'wp_pageviews_ajax', array(
                 'ajax_url' => admin_url( 'admin-ajax.php' )
               ) );
-
-              wp_localize_script( 'my-ajax-script', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
-
         }
 
     }
