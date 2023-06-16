@@ -44,7 +44,7 @@ final class EMO_LA
         new EMO_LA_Enqueue();
         new EMO_LA_Editor_MetaBox();
 		new EMO_LA_Admin_Save();
-		new EMO_LA_Client_Editor();
+		new EMO_LA_Client_Editor_Icon();
     }
 
     public function __construct()
