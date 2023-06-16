@@ -5,10 +5,12 @@ namespace EMO_LA\Utils;
 class EMO_LA_Icons_Render
 {
     private $postObject;
+    private $scriptName;
 
-    public function __construct($postObject)
+    public function __construct($postObject, $scriptName)
     {
         $this->postObject = $postObject;
+        $this->scriptName = $scriptName;
     }
     public function iconRender()
     {
@@ -44,6 +46,6 @@ class EMO_LA_Icons_Render
     public function render()
     {
         $canvasData = array_merge($this->iconRender(), $this->imageRender());
-        wp_localize_script( 'emo-image-editor', 'canvasData', $canvasData);
+        wp_localize_script( $this->scriptName, 'canvasData', $canvasData);
     }
 }

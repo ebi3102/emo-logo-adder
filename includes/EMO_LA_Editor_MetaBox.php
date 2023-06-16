@@ -35,7 +35,7 @@ class EMO_LA_Editor_MetaBox
                         <div id="emoClose" class="close-icon">&#10005;</div>
                         <?php 
                         //Add Logo and Icons detailes
-                        $canvasDate = new EMO_LA_Icons_Render($post);
+                        $canvasDate = new EMO_LA_Icons_Render($post, 'emo-image-editor');
                         echo $canvasDate->render();
                         ?>
                         <canvas
