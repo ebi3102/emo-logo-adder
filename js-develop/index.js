@@ -22,7 +22,6 @@ fabric.Image.fromURL(image1Url, function(img1) {
   });
 });
 
-console.log(JSON.parse(canvasData.logoData));
 fabric.Image.fromURL(image2Url, function(img2) {
   img2.name = "logo";
   img2.set(JSON.parse(canvasData.logoData));
@@ -97,7 +96,6 @@ function saveCanvasAsImage() {
   .then((response) => response.text())
   .then((data) => {
     if (data) {
-      console.log('The server responded: ' + data);
       noticeContainer.innerHTML = data; 
     }
   })
