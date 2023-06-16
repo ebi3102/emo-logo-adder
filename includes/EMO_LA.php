@@ -9,6 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 use EMO_LA\EMO_LA_Enqueue;
 use EMO_LA\EMO_LA_Editor_MetaBox;
+use EMO_LA\Controllers\EMO_LA_Admin_Save;
 
 final class EMO_LA
 {
@@ -27,8 +28,7 @@ final class EMO_LA
 	 *
 	 * @since 2.1
 	 * @static
-	 * @see WC()
-	 * @return WooCommerce - Main instance.
+	 * @return EMO_LA - Main instance.
 	 */
 	public static function instance() {
 		if ( is_null( self::$_instance ) ) {
@@ -42,7 +42,7 @@ final class EMO_LA
     {
         new EMO_LA_Enqueue();
         new EMO_LA_Editor_MetaBox();
-
+		new EMO_LA_Admin_Save;
     }
 
     public function __construct()
