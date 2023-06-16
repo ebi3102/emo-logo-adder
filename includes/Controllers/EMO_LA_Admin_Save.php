@@ -35,7 +35,7 @@ class EMO_LA_Admin_Save
         $this->field_setter();
         $this->nonce_checker();
 
-        $updateMeta = update_post_meta($this->postID, 'emo_logo_data', $this->logoData);
+        $updateMeta = update_post_meta($this->postID, EMO_LA_LOGO_DATA, $this->logoData);
 
         if($updateMeta){
             echo "<div class='emo-notice success'>Congratulations, the logo data has been successfully updated.</div>";
