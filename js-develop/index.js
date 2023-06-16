@@ -91,11 +91,31 @@ function saveCanvasAsImage() {
   if(!saveData.newLog){
     saveData.newLog = canvasData.logo;
   }
-  console.log('Save Data', JSON.stringify(saveData));
-  // You can now use 'image' to display or save the edited image
-  // For example, to display the edited image in an <img> tag:
+  
   const resultImage = new Image();
   resultImage.src = image;
+  var data = new FormData();
+  data.append('action', 'emo_la_admin_save');
+  data.append('postID', emoSaveEditor.getAttribute('data_id'));
+  data.append('nonce', emoSaveEditor.getAttribute('data-nonce'));
+  data.append('logoData', JSON.stringify(saveData));
+ 
+  fetch( wp_pageviews_ajax.ajax_url,{
+    method: "POST",
+    credentials: 'same-origin',
+    body: data
+  })
+  .then((response) => response.text())
+  .then((data) => {
+    if (data) {
+      console.log('The server responded: ' + data);
+      noticeContainer.innerHTML = data; 
+    }
+  })
+  .catch((error) => {
+    alert(error);
+    console.error(error);
+  });
   document.body.appendChild(resultImage);
 }
 
