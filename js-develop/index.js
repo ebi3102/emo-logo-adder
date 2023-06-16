@@ -7,7 +7,9 @@ fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderA
 // Create a Fabric.js canvas instance
 const canvas = new fabric.Canvas('canvas');
 
+// All canvas data store in this variable
 var saveData;
+
 // Load the images
 const image1Url = canvasData.background;
 const image2Url = canvasData.logo;
@@ -20,14 +22,10 @@ fabric.Image.fromURL(image1Url, function(img1) {
   });
 });
 
+console.log(JSON.parse(canvasData.logoData));
 fabric.Image.fromURL(image2Url, function(img2) {
   img2.name = "logo";
-  img2.set({ 
-    left: 80, 
-    top: 80,
-  });
-  img2.scaleX = 0.4; 
-  img2.scaleY = 0.4;
+  img2.set(JSON.parse(canvasData.logoData));
   img2.hasControls = false;
   img2.hasBorders = false;
   canvas.add(img2);
@@ -46,12 +44,7 @@ const admin_upload_logo = (e)=>{
     var imageUrl = selectedImage.toJSON().url;
     fabric.Image.fromURL(imageUrl, function(img3) {
         img3.name = "logo";
-        img3.set({ 
-          left: 80, 
-          top: 80,
-        });
-        img3.scaleX = 0.4; 
-        img3.scaleY = 0.4;
+        img3.set(JSON.parse(canvasData.logoData));
         canvas.add(img3);
 
         var object = canvas.getActiveObject();
