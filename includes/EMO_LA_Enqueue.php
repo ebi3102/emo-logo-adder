@@ -25,6 +25,12 @@ class EMO_LA_Enqueue
         if($hook == 'post.php'){
             wp_enqueue_script( 'emo-image-editor', EMO_LA_URI.'assets/js/image-editor.js',array(),'1.0.0', true );
             wp_enqueue_script( 'admin-scripts', EMO_LA_URI.'assets/js/scripts.admin.js',array('jquery'),'1.0.0', true );
+            wp_localize_script( 'emo-image-editor', 'wp_pageviews_ajax', array(
+                'ajax_url' => admin_url( 'admin-ajax.php' )
+              ) );
+
+              wp_localize_script( 'my-ajax-script', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
+
         }
 
     }
