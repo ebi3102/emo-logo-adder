@@ -32,8 +32,9 @@ class EMO_LA_Editor_MetaBox
             <div class="popup-screen-locker">
                 <div class="popup-editor-container">
                     <div>
+                        <div id="emoClose" class="close-icon">&#10005;</div>
                         <?php 
-                        // Add Icons and logo data as a script tag
+                        //Add Logo and Icons detailes
                         $canvasDate = new EMO_LA_Icons_Render($post);
                         echo $canvasDate->render();
                         ?>
@@ -44,7 +45,7 @@ class EMO_LA_Editor_MetaBox
                             style="border:1px solid #000000;">
                         </canvas>
                         <div class="btn-container">
-                        <div id="emoUploadlogo" class="emo-btn primary">Upload new logo</div>
+                            <div id="emoUploadlogo" class="emo-btn primary">Upload new logo</div>
                             <div
                                 id="emoSaveEditor" 
                                 class="emo-btn success" 
@@ -53,6 +54,7 @@ class EMO_LA_Editor_MetaBox
                                 data_url = "<?php echo admin_url( 'admin-ajax.php' ) ?>"
                             >Save</div>
                         </div>
+                        <div id="noticeContainer"></div>
                     </div>
                 </div>
             </div><!--.popup-screen-locker-->
