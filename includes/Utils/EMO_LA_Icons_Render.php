@@ -12,38 +12,6 @@ class EMO_LA_Icons_Render
     }
     public function iconRender()
     {
-        // tl: {
-        //     icon: '../icons/rotate.svg',
-        // },
-        // tr: {
-        //     icon: '../icons/resize.svg',
-        // },
-        // bl: {
-        //     icon: '../icons/remove.svg',
-        // },
-        // br: {
-        //     icon: '../icons/up.svg',
-        // },
-        // mb: {
-        //     icon: '../icons/down.svg',
-        // },
-        // mt: {
-        //     icon: '../icons/acute.svg',
-        // },
-        // mr: {
-        //     icon: '../icons/repair-tools-cross.svg',
-        // },
-        // mtr: {
-        //     icon: '../icons/rotate.svg',
-        // },
-        // tl:".EMO_LA_URI."assets/icons/',
-        //     tr:".EMO_LA_URI."assets/icons/',
-        //     bl:".EMO_LA_URI."assets/icons/',
-        //     br:".EMO_LA_URI."assets/icons/',
-        //     mb:".EMO_LA_URI."assets/icons/',
-        //     mt:".EMO_LA_URI."assets/icons/',
-        //     mr:".EMO_LA_URI."assets/icons/',
-        //     mtr:".EMO_LA_URI."assets/icons/',
         return "
             tl:'".EMO_LA_URI."assets/icons/resize-inverse.svg',
             tr:'".EMO_LA_URI."assets/icons/resize.svg',
