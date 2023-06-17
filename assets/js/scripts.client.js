@@ -20,6 +20,10 @@ dropContainer.addEventListener('dragover', dragOver);
 dropContainer.addEventListener('dragleave', dragLeave);
 dropContainer.addEventListener('drop', drop);
 
+// UploadLogo.onclick = ()=>{
+    
+// }
+
 function dragEnter(e) {
     e.preventDefault();
     e.target.classList.add('drag-over');
@@ -46,6 +50,13 @@ function drop(e) {
     // };
     fileReader.readAsDataURL(file);
 
+    // AJAX
+    var loadingImg = document.createElement('img');
+    loadingImg.src = uploadedLogoData.loadingSrc;
+    loadingImg.classList.add('loading-image')
+    var perviouseHTML = dropContainer.innerHTML;
+    dropContainer.innerHTML = loadingImg.outerHTML;
+
     var data = new FormData();
     data.append('action', uploadedLogoData.action);
     data.append('nonce', uploadedLogoData.nonce);
@@ -59,7 +70,9 @@ function drop(e) {
     .then((response) => response.text())
     .then((data) => {
         if (data) {
-        noticeContainer.innerHTML = data; 
+            loadingImg.remove();
+            dropContainer.innerHTML = perviouseHTML;    
+            noticeContainer.innerHTML = data; 
         }
     })
     .catch((error) => {
