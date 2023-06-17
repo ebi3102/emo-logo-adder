@@ -15,7 +15,7 @@ class EMO_LA_Enqueue
         add_action('admin_enqueue_scripts', array($this, 'enqueue_styles'));
 
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
+        add_action('wp_enqueue_scripts', array($this, 'client_enqueue_styles'));
 
     }
 
@@ -37,6 +37,14 @@ class EMO_LA_Enqueue
         wp_register_style('admin_styles',EMO_LA_URI.'assets/css/styles.admin.css', array(), '1.0.0', 'all');
         if($hook == 'post.php'){
             wp_enqueue_style('admin_styles');
+        }
+    }
+
+    public function client_enqueue_styles($hook)
+    {
+        wp_register_style('client_styles',EMO_LA_URI.'assets/css/styles.client.css', array(), '1.0.0', 'all');
+        if ( function_exists( 'is_product' ) && is_product() ){
+            wp_enqueue_style('client_styles');
         }
     }
 
