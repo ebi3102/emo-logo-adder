@@ -27,6 +27,23 @@ class EMO_LA_Client_Editor_Icon
                 <div>
                     <div id="emoClose" class="close-icon">&#10005;</div>
                 </div>
+                <div class="upload-container">
+                    <div>
+                        <div class="defualt-logo-container">
+                            <img src="<?php echo EMO_LA_URI."assets/images/logo.png" ?>" alt="">
+                        </div>
+                    </div>
+                    <div id="dropContainer" class="logo-uploader"> &#43;</div>
+                </div>
+                <div class="upload-text-container">
+                    <div><p class="description">Set defualt logo</p></div>
+                    <div>
+                        <div id="preview">
+                            <img id="previewImage" src="#" alt="Preview">
+                        </div>
+                        <p class="upload-logo">Upload your logo</p>
+                    </div>
+                </div>
             </div>
         </div>
     <?php }

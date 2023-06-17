@@ -14,3 +14,36 @@ emoClose.onclick = ()=>{
     popupScreenLocker.style.display = 'none';
     popupUploadContainer.style.display = 'none';
 }
+
+dropContainer.addEventListener('dragenter', dragEnter);
+dropContainer.addEventListener('dragover', dragOver);
+dropContainer.addEventListener('dragleave', dragLeave);
+dropContainer.addEventListener('drop', drop);
+
+function dragEnter(e) {
+    e.preventDefault();
+    e.target.classList.add('drag-over');
+}
+
+function dragOver(e) {
+    e.preventDefault();
+    e.target.classList.add('drag-over');
+}
+
+function dragLeave(e) {
+    e.target.classList.remove('drag-over');
+}
+
+function drop(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    e.target.classList.remove('drag-over');
+    // get the draggable element
+    const file = e.dataTransfer.files[0];
+    const fileReader = new FileReader();
+
+    fileReader.onload = () => {
+        previewImage.src = fileReader.result;
+    };
+    fileReader.readAsDataURL(file);
+}
