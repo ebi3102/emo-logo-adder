@@ -4,6 +4,7 @@
  */
 namespace EMO_LA;
 
+use EMO_LA\Utils\EMO_LA_Inject_JS_Client;
 class EMO_LA_Client_Editor_Icon
 {
     public function __construct()
@@ -16,7 +17,11 @@ class EMO_LA_Client_Editor_Icon
     }
 
     public function editor_template()
-    { ?>
+    { 
+        global $post;
+        $uploadedLogoData = new EMO_LA_Inject_JS_Client($post, 'client-scripts');
+        $uploadedLogoData->render();
+        ?>
         <div class="emo-editor-icon">
             <img id="clientLogoUploader" src="<?php echo EMO_LA_URI."assets/icons/active-icon.svg" ?>" alt="">
         </div>
@@ -38,9 +43,9 @@ class EMO_LA_Client_Editor_Icon
                 <div class="upload-text-container">
                     <div><p class="description">Set defualt logo</p></div>
                     <div>
-                        <div id="preview">
+                        <!-- <div id="preview">
                             <img id="previewImage" src="#" alt="Preview">
-                        </div>
+                        </div> -->
                         <p class="upload-logo">Upload your logo</p>
                     </div>
                 </div>
