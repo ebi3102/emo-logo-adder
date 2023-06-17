@@ -46,7 +46,7 @@ class EMO_LA_Client_Editor_Icon
                         <!-- <div id="preview">
                             <img id="previewImage" src="#" alt="Preview">
                         </div> -->
-                        <p class="upload-logo">Upload your logo</p>
+                        <p id="UploadLogo" class="emo-btn primary upload-logo">Upload your logo</p>
                         <div id="noticeContainer"></div>
                     </div>
                 </div>

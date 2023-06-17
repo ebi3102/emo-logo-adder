@@ -34,6 +34,18 @@ define('EMO_LA_UPLOAD_URI', $upload_base['baseurl'] . '/emo_la/uploadedFiles/');
 //Define metaboxes
 define('EMO_LA_LOGO_DATA', 'emo_logo_data');
 
+global $fileChecker;
+$fileChecker = array(
+    'extensions'=> ['jpg', 'png', 'jpeg'],
+    'max-size' => 2097152
+);
+
+global $fileInfo;
+$fileInfo= array(
+    'fileUrl'=> EMO_LA_UPLOAD_URI,
+    'fileDir'=> EMO_LA_UPLOAD_DIR
+);
+
 if ( ! function_exists( 'emo_la_init' ) ) {
 	add_action( 'plugins_loaded', 'emo_la_init', 11 );
 

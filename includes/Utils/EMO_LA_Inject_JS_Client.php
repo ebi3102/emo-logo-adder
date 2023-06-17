@@ -29,7 +29,7 @@ class EMO_LA_Inject_JS_Client
     public function render()
     {
         $data = array_merge($this->ajax_data(), []);
-        wp_localize_script( $this->scriptName, 'uploadedLogoData', $data);
+        wp_localize_script( 'client-scripts', 'uploadedLogoData', $data);
     }
 
 

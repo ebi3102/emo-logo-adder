@@ -43,19 +43,14 @@ function drop(e) {
     e.stopPropagation();
     e.target.classList.remove('drag-over');
     // get the draggable element
-    const file = e.dataTransfer.files[0];
-    const fileReader = new FileReader();
-    // fileReader.onload = () => {
-    //     previewImage.src = fileReader.result;
-    // };
-    fileReader.readAsDataURL(file);
-
+    const logoFile = e.dataTransfer.files[0];
     // AJAX
-    fetchData(uploadedLogoData, dropContainer, noticeContainer)
+    fetchData(uploadedLogoData, dropContainer, noticeContainer, logoFile)
 }
 
 
-function fetchData(uploadedLogoData, dropContainer, noticeContainer) {
+function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
+
     var loadingImg = document.createElement('img');
     loadingImg.src = uploadedLogoData.loadingSrc;
     loadingImg.classList.add('loading-image');
@@ -65,6 +60,7 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer) {
     var data = new FormData();
     data.append('action', uploadedLogoData.action);
     data.append('nonce', uploadedLogoData.nonce);
+    data.append('logoImage', file);
   
     fetch(uploadedLogoData.ajax_url, {
         method: "POST",
@@ -74,13 +70,21 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer) {
       .then((response) => response.text())
       .then((responseData) => {
         if (responseData) {
-          loadingImg.remove();
-          dropContainer.innerHTML = previousHTML;
-          noticeContainer.innerHTML = responseData;
+            responseData = JSON.parse(responseData);
+            loadingImg.remove();
+            if(responseData.error){
+                noticeContainer.innerHTML = responseData.error;
+            }else{
+                var newLogo = document.createElement('img');
+                newLogo.src = responseData.logSrc;
+                dropContainer.innerHTML = newLogo.outerHTML;
+            }
+            // dropContainer.innerHTML = previousHTML;
         }
       })
       .catch((error) => {
         alert(error);
-        console.error(error);
+        loadingImg.remove();
+        dropContainer.innerHTML = previousHTML;
       });
   }
