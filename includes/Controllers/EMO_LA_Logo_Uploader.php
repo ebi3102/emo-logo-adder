@@ -2,11 +2,9 @@
 
 namespace EMO_LA\Controllers;
 
-class EMO_LA_Logo_Upload
+class EMO_LA_Logo_Uploader
 {
-    private $postID;
     private $nonce;
-    private $logoData;
 
     public function __construct()
     {
@@ -16,9 +14,7 @@ class EMO_LA_Logo_Upload
 
     private function field_setter()
     {
-        $this->postID = EMO_LA_Request_Handler::get_post( 'postID' );
         $this->nonce = EMO_LA_Request_Handler::get_post( 'nonce' );
-        $this->logoData = EMO_LA_Request_Handler::get_post( 'logoData' );
     }
 
     private function nonce_checker()
@@ -32,16 +28,13 @@ class EMO_LA_Logo_Upload
 
     public function emo_la_client_logo_upload()
     {
-        // $this->field_setter();
+        $this->field_setter();
         $this->nonce_checker();
 
-        $updateMeta = update_post_meta($this->postID, EMO_LA_LOGO_DATA, $this->logoData);
-
-        if($updateMeta){
-            echo "<div class='emo-notice success'>Congratulations, the logo data has been successfully updated.</div>";
-        }else{
-            echo "<div class='emo-notice danger'>Sorry, an error is occurred in updating process.</div>";
-        }
+        echo "<div class='emo-notice success'>Congratulations, You connect with backend.</div>";
+        // }else{
+        //     echo "<div class='emo-notice danger'>Sorry, an error is occurred in updating process.</div>";
+        // }
         wp_die();
     }
 }
