@@ -2,6 +2,8 @@
 
 namespace EMO_LA\Controllers;
 
+use EMO_LA\Utils\EMO_LA_Request_Handler;
+
 class EMO_LA_Logo_Uploader
 {
     private $nonce;
@@ -20,10 +22,9 @@ class EMO_LA_Logo_Uploader
     private function nonce_checker()
     {
         if ( !wp_verify_nonce( $this->nonce, "emo_la_nonce".$this->postID)) {
-            echo "<div style='text-align:center'>The page has expired</div>";
+            echo "<div class='emo-notice danger'>The page has expired</div>";
             wp_die();
         }
-
     }
 
     public function emo_la_client_logo_upload()

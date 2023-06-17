@@ -47,6 +47,7 @@ class EMO_LA_Client_Editor_Icon
                             <img id="previewImage" src="#" alt="Preview">
                         </div> -->
                         <p class="upload-logo">Upload your logo</p>
+                        <div id="noticeContainer"></div>
                     </div>
                 </div>
             </div>
