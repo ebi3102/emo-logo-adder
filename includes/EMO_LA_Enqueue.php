@@ -14,7 +14,7 @@ class EMO_LA_Enqueue
         add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_styles'));
 
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+        add_action('wp_enqueue_scripts', array($this, 'client_enqueue_scripts'));
         add_action('wp_enqueue_scripts', array($this, 'client_enqueue_styles'));
 
     }
@@ -46,6 +46,15 @@ class EMO_LA_Enqueue
         if ( function_exists( 'is_product' ) && is_product() ){
             wp_enqueue_style('client_styles');
         }
+    }
+
+    public function client_enqueue_scripts($hook)
+    {
+        wp_register_script('client-scripts', EMO_LA_URI.'assets/js/scripts.client.js',array('jquery'),'1.0.0', true);
+        if ( function_exists( 'is_product' ) && is_product() ){
+            wp_enqueue_script('client-scripts');
+        }
+
     }
 
 }
