@@ -1,0 +1,14 @@
+img{max-width: 100%;}
+.emo-btn{padding: 10px 15px;border-radius: 10px;cursor: pointer;}
+.emo-btn.primary{background: #0d6efd;color: #fff; border:#0d6efd;}
+.emo-btn.primary:hover{background: #0b5ed7; border:#0a58ca;}
+.emo-btn.danger{background: #dc3545;color: #fff; border:#dc3545}
+.emo-btn.danger:hover{background: #bb2d3b; border:#b02a37;}
+.emo-btn.success{background: #198754;color: #fff; border:#198754}
+.emo-btn.success:hover{background: #157347; border:#146c43;}
+.emo-btn.dark{background: #6c757d;color: #fff; border:#6c757d}
+.emo-btn.dark:hover{background: #5c636a; border:#565e64;}
+
+.emo-notice{width: fit-content;padding: 10px 20px;text-align: center;margin: 10px auto 30px auto;border-radius: 5px;}
+.emo-notice.success{background-color: #d1e7dd;border: 1px solid #a3cfbb;color: #0a3622;}
+.emo-notice.danger{background-color: #f8d7da;border: 1px solid #f1aeb5;color: #58151c;}

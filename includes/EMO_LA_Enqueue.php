@@ -11,15 +11,27 @@ class EMO_LA_Enqueue
 
     public function __construct()
     {
-        add_action('admin_enqueue_scripts', array($this, 'enqueue_scripts'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_styles'));
+        add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
+
+        add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
+        add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_styles'));
 
         add_action('wp_enqueue_scripts', array($this, 'client_enqueue_scripts'));
         add_action('wp_enqueue_scripts', array($this, 'client_enqueue_styles'));
 
     }
 
-    public function enqueue_scripts($hook)
+    public function enqueue_styles($hook)
+    {
+        wp_register_style('emo_styles',EMO_LA_URI.'assets/css/styles.css', array(), '1.0.0', 'all');
+        if($hook == 'post.php' || (function_exists( 'is_product' ) && is_product())){
+            wp_enqueue_style('emo_styles');
+        }
+        
+    }
+
+    public function admin_enqueue_scripts($hook)
     {
         
         if($hook == 'post.php'){
@@ -32,7 +44,7 @@ class EMO_LA_Enqueue
 
     }
 
-    public function enqueue_styles($hook)
+    public function admin_enqueue_styles($hook)
     {
         wp_register_style('admin_styles',EMO_LA_URI.'assets/css/styles.admin.css', array(), '1.0.0', 'all');
         if($hook == 'post.php'){
