@@ -1,1 +1,16 @@
 .emo-editor-icon img{width: 100px; margin-top: -30px !important;position: absolute;right: -10px;rotate: -45deg; cursor: pointer;}
+
+.popup-screen-locker
+{display: none; position: fixed; top: 0; left: 0; height: 100vh; width: 100vw; background-color:#00000061; z-index: 10000;}
+
+.popup-upload-container{
+    display: none; width: 500px; margin: 50px auto; background-color: #fff; position: relative;
+}
+
+.close-icon{
+    color: #000;border: 1px solid #000; width: 20px;
+    font-size: 16px; border-radius: 52%;position: absolute;
+    z-index: 1;right: -10px;top: -10px;background: #fff;
+    height: 20px;text-align: center;line-height: 20px;
+    cursor: pointer;
+}

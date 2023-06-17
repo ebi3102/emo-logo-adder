@@ -18,7 +18,16 @@ class EMO_LA_Client_Editor_Icon
     public function editor_template()
     { ?>
         <div class="emo-editor-icon">
-            <img id="ClientLogoUploader" src="<?php echo EMO_LA_URI."assets/icons/active-icon.svg" ?>" alt="">
+            <img id="clientLogoUploader" src="<?php echo EMO_LA_URI."assets/icons/active-icon.svg" ?>" alt="">
+        </div>
+
+        <?php //Modal ?>
+        <div id="popupScreenLocker" class="popup-screen-locker">
+            <div id="popupUploadContainer" class="popup-upload-container">
+                <div>
+                    <div id="emoClose" class="close-icon">&#10005;</div>
+                </div>
+            </div>
         </div>
     <?php }
 
