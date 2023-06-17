@@ -51,32 +51,36 @@ function drop(e) {
     fileReader.readAsDataURL(file);
 
     // AJAX
+    fetchData(uploadedLogoData, dropContainer, noticeContainer)
+}
+
+
+function fetchData(uploadedLogoData, dropContainer, noticeContainer) {
     var loadingImg = document.createElement('img');
     loadingImg.src = uploadedLogoData.loadingSrc;
-    loadingImg.classList.add('loading-image')
-    var perviouseHTML = dropContainer.innerHTML;
+    loadingImg.classList.add('loading-image');
+    var previousHTML = dropContainer.innerHTML;
     dropContainer.innerHTML = loadingImg.outerHTML;
-
+  
     var data = new FormData();
     data.append('action', uploadedLogoData.action);
     data.append('nonce', uploadedLogoData.nonce);
-    //   data.append('logoData', JSON.stringify(saveData));
-    
-    fetch( uploadedLogoData.ajax_url,{
+  
+    fetch(uploadedLogoData.ajax_url, {
         method: "POST",
         credentials: 'same-origin',
         body: data
-    })
-    .then((response) => response.text())
-    .then((data) => {
-        if (data) {
-            loadingImg.remove();
-            dropContainer.innerHTML = perviouseHTML;    
-            noticeContainer.innerHTML = data; 
+      })
+      .then((response) => response.text())
+      .then((responseData) => {
+        if (responseData) {
+          loadingImg.remove();
+          dropContainer.innerHTML = previousHTML;
+          noticeContainer.innerHTML = responseData;
         }
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         alert(error);
         console.error(error);
-    });
-}
+      });
+  }
