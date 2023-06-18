@@ -60,11 +60,9 @@ if ( ! function_exists( 'emo_la_init' ) ) {
         global $gdLib;
         if (function_exists('gd_info')) {
             $gbLib = true;
-            echo "GD library is installed on your server.";
         } else {
             $gdLib = false;
             add_action( 'admin_notices', 'emo_la_notice_gd_lib' );
-            echo "GD library is NOT installed on your server.";
         }
 
         //Check and create essential directories 
