@@ -131,7 +131,7 @@ if ( ! function_exists( 'emo_la_notice_gd_lib' ) ) {
 	function emo_la_notice_gd_lib() {
 		?>
         <div class="error">
-            <p>To remove the background of imagesو <strong>Emo Logo Adder</strong> requires GD to be installed on your php.</p>
+            <p>To remove the background of images,<strong>Emo Logo Adder</strong> requires GD to be installed on your php.</p>
         </div>
 		<?php
 	}
