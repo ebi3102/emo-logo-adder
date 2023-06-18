@@ -15,14 +15,24 @@ emoClose.onclick = ()=>{
     popupUploadContainer.style.display = 'none';
 }
 
+dropContainer.onclick = ()=>{
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.style.display = 'none';
+    fileInput.addEventListener('change', function() {
+        const logoFile = fileInput.files[0];
+        fetchData(uploadedLogoData, dropContainer, noticeContainer, logoFile)
+      });
+    
+      document.body.appendChild(fileInput);
+      fileInput.click();    
+}
+
 dropContainer.addEventListener('dragenter', dragEnter);
 dropContainer.addEventListener('dragover', dragOver);
 dropContainer.addEventListener('dragleave', dragLeave);
 dropContainer.addEventListener('drop', drop);
 
-// UploadLogo.onclick = ()=>{
-    
-// }
 
 function dragEnter(e) {
     e.preventDefault();
@@ -77,6 +87,7 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
             }else{
                 var newLogo = document.createElement('img');
                 newLogo.src = responseData.logSrc;
+                newLogo.classList.add('loaded-logo');
                 dropContainer.innerHTML = newLogo.outerHTML;
             }
             // dropContainer.innerHTML = previousHTML;
