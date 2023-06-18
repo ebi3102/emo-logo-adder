@@ -56,6 +56,17 @@ if ( ! function_exists( 'emo_la_init' ) ) {
 			return;
 		}
 
+        // Check to find GD Library is install on server or not for remove image background
+        global $gdLib;
+        if (function_exists('gd_info')) {
+            $gbLib = true;
+            echo "GD library is installed on your server.";
+        } else {
+            $gdLib = false;
+            add_action( 'admin_notices', 'emo_la_notice_gd_lib' );
+            echo "GD library is NOT installed on your server.";
+        }
+
         //Check and create essential directories 
         if (!file_exists(EMO_LA_CREATED_DIR))
             mkdir(EMO_LA_CREATED_DIR, 0777, true);
@@ -113,6 +124,16 @@ if ( ! function_exists( 'emo_la_notice_faulty' ) ) {
         <div class="error">
             <p>Seems there is an error in installation of <strong>Emo Logo Adder</strong>. Please
                 delete the plugin an install it again.</p>
+        </div>
+		<?php
+	}
+}
+
+if ( ! function_exists( 'emo_la_notice_gd_lib' ) ) {
+	function emo_la_notice_gd_lib() {
+		?>
+        <div class="error">
+            <p>To remove the background of imagesو <strong>Emo Logo Adder</strong> requires GD to be installed on your php.</p>
         </div>
 		<?php
 	}
