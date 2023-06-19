@@ -59,7 +59,7 @@ if ( ! function_exists( 'emo_la_init' ) ) {
         // Check to find GD Library is install on server or not for remove image background
         global $gdLib;
         if (function_exists('gd_info')) {
-            $gbLib = true;
+            $gdLib = true;
         } else {
             $gdLib = false;
             add_action( 'admin_notices', 'emo_la_notice_gd_lib' );

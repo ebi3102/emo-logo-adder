@@ -13,6 +13,8 @@ class EMO_LA_Logo_Uploader
     private $uploadUri;
     private $imgUrl;
     private $imgPath;
+    private $imgExtension;
+    private $imgName;
 
     public function __construct()
     {
@@ -39,11 +41,12 @@ class EMO_LA_Logo_Uploader
     private function file_info(array $info)
 	{
         $this->uploadPath = $info['fileDir'].'/'.date("Y").'/'.date("m").'/';
-        $this->uploadUri = $info['fileUrl'].'/'.date("Y").'/'.date("m").'/';
+        $this->uploadUri = $info['fileUrl'].date("Y").'/'.date("m").'/';
  
-        $img_name = time().'_'. basename($this->file['name']);
-        $this->imgPath = $this->uploadPath.$img_name;
-        $this->imgUrl = $this->uploadUri.$img_name;
+        $this->imgName = time().'_'. basename($this->file['name']);
+        $this->imgPath = $this->uploadPath.$this->imgName;
+        $this->imgUrl = $this->uploadUri.$this->imgName;
+        $this->imgExtension =strtolower(pathinfo($this->imgPath,PATHINFO_EXTENSION));
 	}
 
     private function notice_handel($error = false, $msg)
@@ -92,44 +95,20 @@ class EMO_LA_Logo_Uploader
         $this->file_info($fileInfo);
 
         $uploadedImg = $this->upload_handler($this->fileChecker, $this->imgPath, $this->file );
-        if(!$uploadedImg['error']){
+
+        //Remove image background
+        global $gdLib;
+        if(!$uploadedImg['error'] && $gdLib){
             // Path to the input image
             $inputImage = $this->imgPath;
-
-            // Load the input image
-            $sourceImage = imagecreatefromjpeg($inputImage);
-
-            // Get the image dimensions
-            $width = imagesx($sourceImage);
-            $height = imagesy($sourceImage);
-
-            // Create a new image with transparent background
-            $targetImage = imagecreatetruecolor($width, $height);
-            $transparentColor = imagecolorallocatealpha($targetImage, 0, 0, 0, 127);
-            imagefill($targetImage, 0, 0, $transparentColor);
-            imagesavealpha($targetImage, true);
-
-            // Copy and merge the input image onto the transparent image
-            imagecopy($targetImage, $sourceImage, 0, 0, 0, 0, $width, $height);
-
-            // Save the image with transparent background
-            $outputImage = $this->uploadPath.'NOBG'.$img_name;;
-            imagepng($targetImage, $outputImage);
-
-            // Free up memory
-            imagedestroy($sourceImage);
-            imagedestroy($targetImage);
-
-
-
-
-            // $img = imagecreatefromstring($this->imgPath); //or whatever loading function you need
-            // $white = imagecolorallocate($img, 255, 255, 255);
-            // imagecolortransparent($img, $white);
-            // $img_name = time().'_'. basename($this->file['name']);
-            // $output_file_name = $this->uploadPath.'NOBG'.$img_name;
-            // // $this->imgUrl = $this->uploadUri.$img_name;
-            // imagepng($img, $output_file_name);
+            $outputImage = $this->uploadPath.'NOBG.png';
+            $img = imagecreatefromjpeg($inputImage);; //or whatever loading function you need
+            $white = imagecolorallocate($img, 255, 255, 255);
+            imagecolortransparent($img, $white);
+            imagepng($img, $outputImage);
+            // // Free up memory
+            // imagedestroy($sourceImage);
+            // imagedestroy($targetImage);
         }
         if($uploadedImg['error']){
             $output = array(
@@ -143,7 +122,8 @@ class EMO_LA_Logo_Uploader
             );
         }
         
-        echo json_encode($output);
+        // echo json_encode($output);
+        echo "Done";
         wp_die();
     }
 }
