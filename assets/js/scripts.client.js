@@ -105,12 +105,6 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
                 newLogo.src = responseData.logSrc;
                 newLogo.classList.add('loaded-logo');
 
-                
-
-
-                var btn = document.createElement("div");
-                btn.classList.add('emo-btn', 'primary', 'set-to-editor');
-
                 if(responseData.logoNOBGSrc){
                     //set logo with background
                     let imgContainer_1 = document.createElement('div');

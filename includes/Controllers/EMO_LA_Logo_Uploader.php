@@ -103,10 +103,9 @@ class EMO_LA_Logo_Uploader
 
             $outputImagePath = $this->uploadPath.$this->imgPureName.'_NOBG_.png';
             $outputImageUrl = $this->uploadUri.$this->imgPureName.'_NOBG_.png';
-    
             $white = imagecolorallocate($img, 255, 255, 255);
             imagecolortransparent($img, $white);
-            $returnImg = imagepng($img, $outputImagePath, 0, PNG_ALL_FILTERS);
+            $returnImg = imagepng($img, $outputImagePath);
             // Free up memory
             imagedestroy($img);
             if($returnImg){
@@ -129,20 +128,22 @@ class EMO_LA_Logo_Uploader
 
         $uploadedImg = $this->upload_handler($this->fileChecker, $this->imgPath, $this->file );
 
-        if($uploadedImg['error']){
-            $output = array(
-                'error' => $uploadedImg['error']
-            );
-        }else{
-            $output = array(
-                'error' => false,
-                'success' => $this->notice_handel(false,  __( "Congratulations, Your image uploded successfully.", "emo_logo_adder" )),
-                'logSrc' => $this->imgUrl,
-                'logoNOBGSrc' =>  $this->remove_background($uploadedImg)
-            );
-        }
+        echo $this->remove_background($uploadedImg);
+
+        // if($uploadedImg['error']){
+        //     $output = array(
+        //         'error' => $uploadedImg['error']
+        //     );
+        // }else{
+        //     $output = array(
+        //         'error' => false,
+        //         'success' => $this->notice_handel(false,  __( "Congratulations, Your image uploded successfully.", "emo_logo_adder" )),
+        //         'logSrc' => $this->imgUrl,
+        //         'logoNOBGSrc' =>  $this->remove_background($uploadedImg)
+        //     );
+        // }
         
-        echo json_encode($output);
+        // echo json_encode($output);
         wp_die();
     }
 }
