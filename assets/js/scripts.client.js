@@ -105,23 +105,46 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
                 newLogo.src = responseData.logSrc;
                 newLogo.classList.add('loaded-logo');
 
+                
+
+
                 var btn = document.createElement("div");
-                btn.classList.add('btn primary set-to-editor');
+                btn.classList.add('emo-btn', 'primary', 'set-to-editor');
 
-                // if(responseData.logoNOBGSrc){
-
-                // }else{
-                    CustomLogoParts.appendChild(newLogo);
+                if(responseData.logoNOBGSrc){
+                    //set logo with background
+                    let imgContainer_1 = document.createElement('div');
+                    imgContainer_1.appendChild(newLogo);
+                    let btn_1 = document.createElement("div");
+                    btn_1.classList.add('emo-btn', 'primary', 'set-to-editor');
+                    btn_1.setAttribute('logo-source', newLogo.src);
+                    btn_1.textContent = "set with background";
+                    imgContainer_1.appendChild(btn_1);
+                    CustomLogoParts.appendChild(imgContainer_1);
+                    //set logo without background
+                    let imgContainer_2 = document.createElement('div');
+                    var newNOBGLogo = document.createElement('img');
+                    newNOBGLogo.src = responseData.logoNOBGSrc;
+                    newNOBGLogo.classList.add('loaded-logo');
+                    imgContainer_2.appendChild(newNOBGLogo);
+                    let btn_2 = document.createElement("div");
+                    btn_2.classList.add('emo-btn', 'primary', 'set-to-editor')
+                    btn_2.setAttribute('logo-source', newNOBGLogo.src);
+                    btn_2.textContent = "set without background";
+                    imgContainer_2.appendChild(btn_2);
+                    CustomLogoParts.appendChild(imgContainer_2);
+                }else{
+                    var imgContainer = document.createElement('div');
+                    imgContainer.style.width = "100%";
+                    imgContainer.appendChild(newLogo);
+                    var btn = document.createElement("div");
+                    btn.classList.add('emo-btn', 'primary', 'set-to-editor')
                     btn.setAttribute('logo-source', newLogo.src);
                     btn.textContent = "set";
-                    CustomLogoParts.appendChild(btn);
-                // }
-
-
-                
-                // dropContainer.innerHTML = newLogo.outerHTML;
+                    imgContainer.appendChild(btn);
+                    CustomLogoParts.appendChild(imgContainer);
+                }
             }
-            // dropContainer.innerHTML = responseData;
         }
       })
       .catch((error) => {

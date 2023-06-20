@@ -24,6 +24,6 @@
 .upload-text-container>div{width: 50%;text-align: center; margin:auto 10px}
 .upload-text-container p{margin-bottom: 0;}
 .drag-over {border: dashed 3px red;}
-.loaded-logo{height: 100%;}
+.loaded-logo{height: 100%; margin: 5px auto !important;}
 
 .set-custom-logo-container{display: none; width: 500px; margin: 100px auto; background-color: #fff; position: relative; padding: 20px 10px;}
