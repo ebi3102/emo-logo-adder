@@ -15,6 +15,7 @@ class EMO_LA_Logo_Uploader
     private $imgPath;
     private $imgExtension;
     private $imgName;
+    private $imgPureName;
 
     public function __construct()
     {
@@ -47,6 +48,7 @@ class EMO_LA_Logo_Uploader
         $this->imgPath = $this->uploadPath.$this->imgName;
         $this->imgUrl = $this->uploadUri.$this->imgName;
         $this->imgExtension =strtolower(pathinfo($this->imgPath,PATHINFO_EXTENSION));
+        $this->imgPureName = pathinfo($this->imgPath, PATHINFO_FILENAME);
 	}
 
     private function notice_handel($error = false, $msg)
@@ -68,12 +70,11 @@ class EMO_LA_Logo_Uploader
             mkdir($this->uploadPath, 0777, true);
         }
 
-        //Upload and handle National ID Image
+        //Upload and handle Image
         $fileTemp =$file['tmp_name'];
         $fileSize = $file['size'];
-        $fileExt =strtolower(pathinfo($filePath,PATHINFO_EXTENSION));
 
-        if(in_array($fileExt,$extensions)=== false){
+        if(in_array($this->imgExtension,$extensions)=== false){
             $errorMsg= __( "The extension of uploaded file is not allowed, please choose a csv file.", "emo_logo_adder" );
             return ['error'=>$this->notice_handel(true, $errorMsg)];
         }
@@ -87,6 +88,38 @@ class EMO_LA_Logo_Uploader
         return ['error'=>$this->notice_handel(true,  __( "It is not possible to upload the file at this time.", "emo_logo_adder" ))];
     }
 
+    private function remove_background(array $uploadedImg)
+    {
+        global $gdLib;
+        if(!$uploadedImg['error'] && $gdLib){
+            $inputImage = $this->imgPath;
+            if($this->imgExtension == 'jpg'|| $this->imgExtension == 'jpeg'){
+                $img = imagecreatefromjpeg($inputImage);
+            }elseif($this->imgExtension == 'png'){
+                $img = imagecreatefrompng($inputImage);
+            }else{
+                return false;
+            }
+
+            $outputImagePath = $this->uploadPath.time().'_'.$this->imgPureName.'.png';
+            $outputImageUrl = $this->uploadUri.time().'_NOBG_'.$this->imgPureName.'.png';
+    
+            $white = imagecolorallocate($img, 255, 255, 255);
+            imagecolortransparent($img, $white);
+            $returnImg = imagepng($img, $outputImagePath, 0, PNG_ALL_FILTERS);
+            // Free up memory
+            imagedestroy($img);
+            if($returnImg){
+                return $outputImageUrl;
+            }else{
+                return false;
+            }   
+        }else{
+            return false;
+        }
+        
+    }
+
     public function emo_la_client_logo_upload()
     {
         global $fileInfo;
@@ -96,20 +129,6 @@ class EMO_LA_Logo_Uploader
 
         $uploadedImg = $this->upload_handler($this->fileChecker, $this->imgPath, $this->file );
 
-        //Remove image background
-        global $gdLib;
-        if(!$uploadedImg['error'] && $gdLib){
-            // Path to the input image
-            $inputImage = $this->imgPath;
-            $outputImage = $this->uploadPath.'NOBG.png';
-            $img = imagecreatefromjpeg($inputImage);; //or whatever loading function you need
-            $white = imagecolorallocate($img, 255, 255, 255);
-            imagecolortransparent($img, $white);
-            imagepng($img, $outputImage);
-            // // Free up memory
-            // imagedestroy($sourceImage);
-            // imagedestroy($targetImage);
-        }
         if($uploadedImg['error']){
             $output = array(
                 'error' => $uploadedImg['error']
@@ -118,7 +137,8 @@ class EMO_LA_Logo_Uploader
             $output = array(
                 'error' => false,
                 'success' => $this->notice_handel(false,  __( "Congratulations, Your image uploded successfully.", "emo_logo_adder" )),
-                'logSrc' => $this->imgUrl
+                'logSrc' => $this->imgUrl,
+                'logoNOBGSrc' =>  $this->remove_background($uploadedImg)
             );
         }
         
