@@ -48,6 +48,12 @@ class EMO_LA_Client_Editor_Icon
                     </div>
                 </div>
             </div>
+            <div id="setCustomLogoContainer" class="set-custom-logo-container">
+                <div>
+                    <div class="close-icon">&#10005;</div>
+                </div>
+                <div id="CustomLogoParts" class="upload-container"></div>
+            </div>
         </div>
     <?php }
 
