@@ -142,8 +142,7 @@ class EMO_LA_Logo_Uploader
             );
         }
         
-        // echo json_encode($output);
-        echo "Done";
+        echo json_encode($output);
         wp_die();
     }
 }
