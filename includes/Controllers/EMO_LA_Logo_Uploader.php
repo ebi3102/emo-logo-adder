@@ -101,8 +101,8 @@ class EMO_LA_Logo_Uploader
                 return false;
             }
 
-            $outputImagePath = $this->uploadPath.time().'_'.$this->imgPureName.'.png';
-            $outputImageUrl = $this->uploadUri.time().'_NOBG_'.$this->imgPureName.'.png';
+            $outputImagePath = $this->uploadPath.$this->imgPureName.'_NOBG_.png';
+            $outputImageUrl = $this->uploadUri.$this->imgPureName.'_NOBG_.png';
     
             $white = imagecolorallocate($img, 255, 255, 255);
             imagecolortransparent($img, $white);
