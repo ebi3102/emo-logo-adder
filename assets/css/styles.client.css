@@ -21,7 +21,7 @@
 
 
 .upload-text-container{display: flex; padding: 10px;justify-content: center;align-items: center;}
-.upload-text-container>div{width: 50%;text-align: center;}
+.upload-text-container>div{width: 50%;text-align: center; margin:auto 10px}
 .upload-text-container p{margin-bottom: 0;}
 .drag-over {border: dashed 3px red;}
 .loaded-logo{height: 100%;}

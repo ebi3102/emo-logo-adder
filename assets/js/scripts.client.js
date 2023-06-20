@@ -15,18 +15,8 @@ emoClose.onclick = ()=>{
     popupUploadContainer.style.display = 'none';
 }
 
-dropContainer.onclick = ()=>{
-    var fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.style.display = 'none';
-    fileInput.addEventListener('change', function() {
-        const logoFile = fileInput.files[0];
-        fetchData(uploadedLogoData, dropContainer, noticeContainer, logoFile)
-      });
-    
-      document.body.appendChild(fileInput);
-      fileInput.click();    
-}
+dropContainer.onclick = fetchClick;
+UploadLogo.onclick = fetchClick;
 
 dropContainer.addEventListener('dragenter', dragEnter);
 dropContainer.addEventListener('dragover', dragOver);
@@ -59,6 +49,20 @@ function drop(e) {
 }
 
 
+function fetchClick(){
+    var fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.style.display = 'none';
+    fileInput.addEventListener('change', function() {
+        const logoFile = fileInput.files[0];
+        fetchData(uploadedLogoData, dropContainer, noticeContainer, logoFile)
+      });
+    
+      document.body.appendChild(fileInput);
+      fileInput.click(); 
+}
+
+
 function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
 
     var loadingImg = document.createElement('img');
@@ -82,6 +86,7 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
         if (responseData) {
             responseData = JSON.parse(responseData);
             loadingImg.remove();
+            dropContainer.innerHTML = previousHTML;
             if(responseData.error){
                 noticeContainer.innerHTML = responseData.error;
             }else{
@@ -90,7 +95,7 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
                 newLogo.classList.add('loaded-logo');
                 dropContainer.innerHTML = newLogo.outerHTML;
             }
-            // dropContainer.innerHTML = previousHTML;
+            // dropContainer.innerHTML = responseData;
         }
       })
       .catch((error) => {

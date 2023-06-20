@@ -41,11 +41,8 @@ class EMO_LA_Client_Editor_Icon
                     <div id="dropContainer" class="logo-uploader"> &#43;</div>
                 </div>
                 <div class="upload-text-container">
-                    <div><p class="description">Set defualt logo</p></div>
+                    <div><p id="setDefualtLogo" class="emo-btn primary">Set defualt logo</p></div>
                     <div>
-                        <!-- <div id="preview">
-                            <img id="previewImage" src="#" alt="Preview">
-                        </div> -->
                         <p id="UploadLogo" class="emo-btn primary upload-logo">Upload your logo</p>
                         <div id="noticeContainer"></div>
                     </div>
