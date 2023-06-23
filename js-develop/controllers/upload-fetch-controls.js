@@ -12,6 +12,7 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
     data.append('action', uploadedLogoData.action);
     data.append('nonce', uploadedLogoData.nonce);
     data.append('logoImage', file);
+    data.append('PostID', uploadedLogoData.postID)
   
     fetch(uploadedLogoData.ajax_url, {
         method: "POST",
