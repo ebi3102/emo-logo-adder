@@ -1,9 +1,12 @@
 const path = require('path');
 
 module.exports = {
-  entry: './js-develop/index.js',
+  entry: {
+    adminEditor: './js-develop/admin-editor.js',
+    clientEditor: './js-develop/client-editor.js'
+  },
   output: {
-    filename: 'image-editor.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'assets/js'),
   },
 };
