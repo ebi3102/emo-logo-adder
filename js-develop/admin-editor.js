@@ -66,7 +66,7 @@ canvas.on('selection:created', function(event) {
 });
 
 canvas.on("object:modified", (event)=>{
-  saveData = event.target
+  saveData = event.target;
 });
 
 document.getElementById('emoSaveEditor').addEventListener('click', ()=>{
@@ -83,10 +83,12 @@ function saveCanvasAsImage() {
   const resultImage = new Image();
   resultImage.src = image;
   var data = new FormData();
+  let jsonSaveData = JSON.parse(JSON.stringify(saveData))
+  jsonSaveData.backgroundImg = canvasData.background;
   data.append('action', 'emo_la_admin_save');
   data.append('postID', emoSaveEditor.getAttribute('data_id'));
   data.append('nonce', emoSaveEditor.getAttribute('data-nonce'));
-  data.append('logoData', JSON.stringify(saveData));
+  data.append('logoData', JSON.stringify(jsonSaveData));
  
   fetch( wp_pageviews_ajax.ajax_url,{
     method: "POST",
@@ -103,6 +105,5 @@ function saveCanvasAsImage() {
     alert(error);
     console.error(error);
   });
-  // document.body.appendChild(resultImage);
 }
 
