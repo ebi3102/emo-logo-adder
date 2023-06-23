@@ -8,6 +8,7 @@ class EMO_LA_Logo_Uploader
 {
     private $nonce;
     private $file;
+    private $postID;
     private $fileChecker;
     private $uploadPath;
     private $uploadUri;
@@ -29,6 +30,7 @@ class EMO_LA_Logo_Uploader
         $this->nonce = EMO_LA_Request_Handler::get_post( 'nonce' );
         $this->file = EMO_LA_Request_Handler::get_FILE('logoImage');
         $this->fileChecker = $fileChecker;
+        $this->postID = EMO_LA_Request_Handler::get_post( 'PostID' );
     }
 
     private function nonce_checker()
@@ -132,7 +134,6 @@ class EMO_LA_Logo_Uploader
         $this->file_info($fileInfo);
 
         $uploadedImg = $this->upload_handler($this->fileChecker, $this->imgPath, $this->file );
-        $logoData = get_post_meta( $this->postID, EMO_LA_LOGO_DATA, true );
 
         if($uploadedImg['error']){
             $output = array(
@@ -144,7 +145,6 @@ class EMO_LA_Logo_Uploader
                 'success' => $this->notice_handel(false,  __( "Congratulations, Your image uploded successfully.", "emo_logo_adder" )),
                 'logSrc' => $this->imgUrl,
                 'logoNOBGSrc' =>  $this->remove_background($uploadedImg),
-                'logoData' =>$this->logoData
             );
         }
         
