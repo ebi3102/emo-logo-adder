@@ -1,4 +1,5 @@
 import { drop, dragEnter, dragLeave, dragOver, fetchClick } from "./controllers/upload-events";
+import { clientFabric } from "./editors/client-fabric";
 
 // Upload section
 clientLogoUploader.onclick = ()=>{
@@ -25,8 +26,7 @@ var setToEditorContainer = document.getElementById('popupScreenLocker');
 setToEditorContainer.addEventListener('click', function(event) {
     if (event.target.classList.contains('set-to-editor')) {
         var logoSource = event.target.getAttribute('logo-source');
-        console.log(logoSource);
-        console.log("logoSource");
+        clientFabric(logoSource);
     }
 });
 
