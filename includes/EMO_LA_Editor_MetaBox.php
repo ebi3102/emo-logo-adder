@@ -27,10 +27,11 @@ class EMO_LA_Editor_MetaBox
     {
         $btnText = __("Add logo editor setting", 'emo_logo_adder');
         if(has_post_thumbnail($post)){
+            global $canvasData;
             echo "<button id='addEditorPopUp'>{$btnText}</button>";
             ?>
             <div class="popup-screen-locker">
-                <div class="popup-editor-container">
+                <div class="popup-editor-container" style="width:<?php echo $canvasData['width'].'px' ?>">
                     <div>
                         <div id="emoClose" class="close-icon">&#10005;</div>
                         <?php 
@@ -40,9 +41,9 @@ class EMO_LA_Editor_MetaBox
                         ?>
                         <canvas
                             id="canvas"
-                            width="500"
-                            height="500"
-                            style="border:1px solid #000000;">
+                            width="<?php echo $canvasData['width'] ?>"
+                            height="<?php echo $canvasData['height'] ?>"
+                            style="border:1px solid #000000; margin:auto;">
                         </canvas>
                         <div class="btn-container">
                             <div id="emoUploadlogo" class="emo-btn primary">Upload new logo</div>
