@@ -27,7 +27,8 @@ function clientFabric(logoSrc){
 
     // All canvas data store in this variable
     var saveData;
-    const image1Url = "http://localhost/wp-test/wp-content/uploads/2023/06/vneck-tee.jpg";
+    var logoData = JSON.parse(uploadedLogoData.logoData)
+    const image1Url = logoData.backgroundImg;
     const image2Url = logoSrc;
     fabric.Image.fromURL(image1Url, function(img1) {
         // add background image
@@ -36,5 +37,14 @@ function clientFabric(logoSrc){
            scaleY: canvas.height / img1.height,
         });
     });
+
+    fabric.Image.fromURL(image2Url, function(img2) {
+        img2.name = "logo";
+        img2.set(logoData);
+        img2.hasControls = false;
+        img2.hasBorders = false;
+        canvas.add(img2);
+        canvas.setActiveObject(img2);
+      });
 
 }
