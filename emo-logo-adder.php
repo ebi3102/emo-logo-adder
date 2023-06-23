@@ -46,6 +46,12 @@ $fileInfo= array(
     'fileDir'=> EMO_LA_UPLOAD_DIR
 );
 
+global $canvasData;
+$canvasData = array(
+    "width"=>416,
+    "height" => 415
+);
+
 if ( ! function_exists( 'emo_la_init' ) ) {
 	add_action( 'plugins_loaded', 'emo_la_init', 11 );
 

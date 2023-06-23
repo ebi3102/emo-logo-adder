@@ -27,10 +27,18 @@ class EMO_LA_Inject_JS_Client
         );
     }
 
+    private function canvas_data()
+    {
+        global $canvasData;
+        return array(
+            "logoData" => get_post_meta( $this->postObject->ID, EMO_LA_LOGO_DATA, true ),
+            "canvasData" =>$canvasData
+        );
+    }
+
     public function render()
     {
-        $logoData = get_post_meta( $this->postObject->ID, EMO_LA_LOGO_DATA, true );
-        $data = array_merge($this->ajax_data(), ['logoData'=>$logoData]);
+        $data = array_merge($this->ajax_data(), $this->canvas_data());
         wp_localize_script( 'client-scripts', 'uploadedLogoData', $data);
     }
 
