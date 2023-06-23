@@ -120,7 +120,11 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
                     var newNOBGLogo = document.createElement('img');
                     newNOBGLogo.src = responseData.logoNOBGSrc;
                     newNOBGLogo.classList.add('loaded-logo');
-                    imgContainer_2.appendChild(newNOBGLogo);
+                    let imgDiv = document.createElement("div");
+                    imgDiv.style.backgroundColor = "#c9c9c942";
+                    imgDiv.appendChild(newNOBGLogo);
+                    imgContainer_2.appendChild(imgDiv);
+                    // imgContainer_2.appendChild(newNOBGLogo);
                     let btn_2 = document.createElement("div");
                     btn_2.classList.add('emo-btn', 'primary', 'set-to-editor')
                     btn_2.setAttribute('logo-source', newNOBGLogo.src);

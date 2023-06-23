@@ -128,22 +128,22 @@ class EMO_LA_Logo_Uploader
 
         $uploadedImg = $this->upload_handler($this->fileChecker, $this->imgPath, $this->file );
 
-        echo $this->remove_background($uploadedImg);
+        // echo $this->remove_background($uploadedImg);
 
-        // if($uploadedImg['error']){
-        //     $output = array(
-        //         'error' => $uploadedImg['error']
-        //     );
-        // }else{
-        //     $output = array(
-        //         'error' => false,
-        //         'success' => $this->notice_handel(false,  __( "Congratulations, Your image uploded successfully.", "emo_logo_adder" )),
-        //         'logSrc' => $this->imgUrl,
-        //         'logoNOBGSrc' =>  $this->remove_background($uploadedImg)
-        //     );
-        // }
+        if($uploadedImg['error']){
+            $output = array(
+                'error' => $uploadedImg['error']
+            );
+        }else{
+            $output = array(
+                'error' => false,
+                'success' => $this->notice_handel(false,  __( "Congratulations, Your image uploded successfully.", "emo_logo_adder" )),
+                'logSrc' => $this->imgUrl,
+                'logoNOBGSrc' =>  $this->remove_background($uploadedImg)
+            );
+        }
         
-        // echo json_encode($output);
+        echo json_encode($output);
         wp_die();
     }
 }
