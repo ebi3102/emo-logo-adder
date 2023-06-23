@@ -25,6 +25,7 @@ dropContainer.addEventListener('drop', drop);
 var setToEditorContainer = document.getElementById('popupScreenLocker');
 setToEditorContainer.addEventListener('click', function(event) {
     if (event.target.classList.contains('set-to-editor')) {
+        popupScreenLocker.style.display = 'none';
         var logoSource = event.target.getAttribute('logo-source');
         clientFabric(logoSource);
     }
