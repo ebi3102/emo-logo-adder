@@ -34,7 +34,12 @@ class EMO_LA_Logo_Uploader
     private function nonce_checker()
     {
         if ( !wp_verify_nonce( $this->nonce, "emo_la_nonce".$this->postID)) {
-            echo "<div class='emo-notice danger'>The page has expired</div>";
+            echo json_encode([
+                'error'=>$this->notice_handel(
+                    true, 
+                    "The page has been expired"
+                )
+            ]);
             wp_die();
         }
     }
@@ -127,8 +132,7 @@ class EMO_LA_Logo_Uploader
         $this->file_info($fileInfo);
 
         $uploadedImg = $this->upload_handler($this->fileChecker, $this->imgPath, $this->file );
-
-        // echo $this->remove_background($uploadedImg);
+        $logoData = get_post_meta( $this->postID, EMO_LA_LOGO_DATA, true );
 
         if($uploadedImg['error']){
             $output = array(
@@ -139,7 +143,8 @@ class EMO_LA_Logo_Uploader
                 'error' => false,
                 'success' => $this->notice_handel(false,  __( "Congratulations, Your image uploded successfully.", "emo_logo_adder" )),
                 'logSrc' => $this->imgUrl,
-                'logoNOBGSrc' =>  $this->remove_background($uploadedImg)
+                'logoNOBGSrc' =>  $this->remove_background($uploadedImg),
+                'logoData' =>$this->logoData
             );
         }
         
