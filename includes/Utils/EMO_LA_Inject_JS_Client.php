@@ -29,7 +29,8 @@ class EMO_LA_Inject_JS_Client
 
     public function render()
     {
-        $data = array_merge($this->ajax_data(), []);
+        $logoData = get_post_meta( $this->postObject->ID, EMO_LA_LOGO_DATA, true );
+        $data = array_merge($this->ajax_data(), ['logoData'=>$logoData]);
         wp_localize_script( 'client-scripts', 'uploadedLogoData', $data);
     }
 
