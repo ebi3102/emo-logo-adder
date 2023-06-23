@@ -41,14 +41,22 @@ class EMO_LA_Client_Editor_Icon
                     <div id="dropContainer" class="logo-uploader"> &#43;</div>
                 </div>
                 <div class="upload-text-container">
-                    <div><p id="setDefualtLogo" class="emo-btn primary">Set defualt logo</p></div>
+                    <div>
+                        <p 
+                            id="setDefualtLogo" 
+                            class="emo-btn primary set-to-editor"
+                            logo-source = "<?php echo EMO_LA_URI."assets/images/logo.png" ?>"
+                        >
+                            Set defualt logo
+                        </p>
+                    </div>
                     <div>
                         <p id="UploadLogo" class="emo-btn primary upload-logo">Upload your logo</p>
                         <div id="noticeContainer"></div>
                     </div>
                 </div>
             </div>
-            <div id="setCustomLogoContainer" class="set-custom-logo-container">
+            <div id="setCustomLogoContainer" class="set-custom-logo-container" >
                 <div>
                     <div class="close-icon">&#10005;</div>
                 </div>
