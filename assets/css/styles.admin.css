@@ -13,4 +13,6 @@
     cursor: pointer;
 }
 .btn-container{display: flex; margin: 10px auto; width: 100%; justify-content: space-evenly; padding: 20px 0;}
+.loading-img {text-align: center; display: none;}
+.loading-img img{width: 20px; height: auto; }
 .notice-container{padding-bottom: 10px;}

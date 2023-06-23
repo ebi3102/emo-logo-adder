@@ -89,7 +89,7 @@ function saveCanvasAsImage() {
   data.append('postID', emoSaveEditor.getAttribute('data_id'));
   data.append('nonce', emoSaveEditor.getAttribute('data-nonce'));
   data.append('logoData', JSON.stringify(jsonSaveData));
- 
+  loadingImg.style.display = 'block';
   fetch( wp_pageviews_ajax.ajax_url,{
     method: "POST",
     credentials: 'same-origin',
@@ -98,6 +98,7 @@ function saveCanvasAsImage() {
   .then((response) => response.text())
   .then((data) => {
     if (data) {
+      loadingImg.style.display = 'none';
       noticeContainer.innerHTML = data; 
     }
   })

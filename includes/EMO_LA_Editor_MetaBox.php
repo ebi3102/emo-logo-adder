@@ -55,6 +55,7 @@ class EMO_LA_Editor_MetaBox
                                 data_url = "<?php echo admin_url( 'admin-ajax.php' ) ?>"
                             >Save</div>
                         </div>
+                        <div id="loadingImg" class="loading-img"><img src="<?php echo EMO_LA_URI.'assets/images/loading.gif'?>" alt=""></div>
                         <div class="notice-container" id="noticeContainer"></div>
                     </div>
                 </div>
