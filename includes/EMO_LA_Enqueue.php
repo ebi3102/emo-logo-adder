@@ -35,7 +35,7 @@ class EMO_LA_Enqueue
     {
         
         if($hook == 'post.php'){
-            wp_enqueue_script( 'emo-image-editor', EMO_LA_URI.'assets/js/image-editor.js',array(),'1.0.0', true );
+            wp_enqueue_script( 'emo-image-editor', EMO_LA_URI.'assets/js/adminEditor.js',array(),'1.0.0', true );
             wp_enqueue_script( 'admin-scripts', EMO_LA_URI.'assets/js/scripts.admin.js',array('jquery'),'1.0.0', true );
             wp_localize_script( 'emo-image-editor', 'wp_pageviews_ajax', array(
                 'ajax_url' => admin_url( 'admin-ajax.php' )
@@ -62,7 +62,7 @@ class EMO_LA_Enqueue
 
     public function client_enqueue_scripts($hook)
     {
-        wp_register_script('client-scripts', EMO_LA_URI.'assets/js/scripts.client.js',array('jquery'),'1.0.0', true);
+        wp_register_script('client-scripts', EMO_LA_URI.'assets/js/clientEditor.js',array('jquery'),'1.0.0', true);
         if ( function_exists( 'is_product' ) && is_product() ){
             wp_enqueue_script('client-scripts');
         }
