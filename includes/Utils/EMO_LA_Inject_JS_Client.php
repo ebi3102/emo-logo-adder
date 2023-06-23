@@ -21,8 +21,9 @@ class EMO_LA_Inject_JS_Client
         return array(
             'ajax_url'  => admin_url( 'admin-ajax.php' ),
             'action'    => 'emo_la_client_logo_upload',
-            'nonce'     => wp_create_nonce("emo_la_nonce".$post->ID),
-            'loadingSrc' => EMO_LA_URI."assets/images/loading.gif"
+            'nonce'     => wp_create_nonce("emo_la_nonce".$this->postObject->ID),
+            'loadingSrc' => EMO_LA_URI."assets/images/loading.gif",
+            'postID' => $this->postObject->ID
         );
     }
 
