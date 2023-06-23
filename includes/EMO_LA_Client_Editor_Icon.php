@@ -21,6 +21,7 @@ class EMO_LA_Client_Editor_Icon
         global $post;
         $uploadedLogoData = new EMO_LA_Inject_JS_Client($post, 'client-scripts');
         $uploadedLogoData->render();
+        $logoData = json_decode( get_post_meta( $post->ID, EMO_LA_LOGO_DATA, true ));
         ?>
         <div class="emo-editor-icon">
             <img id="clientLogoUploader" src="<?php echo EMO_LA_URI."assets/icons/active-icon.svg" ?>" alt="">
@@ -35,7 +36,7 @@ class EMO_LA_Client_Editor_Icon
                 <div class="upload-container">
                     <div>
                         <div class="defualt-logo-container">
-                            <img src="<?php echo EMO_LA_URI."assets/images/logo.png" ?>" alt="">
+                            <img src="<?php echo $logoData->src ?>" alt="">
                         </div>
                     </div>
                     <div id="dropContainer" class="logo-uploader"> &#43;</div>
@@ -45,7 +46,7 @@ class EMO_LA_Client_Editor_Icon
                         <p 
                             id="setDefualtLogo" 
                             class="emo-btn primary set-to-editor"
-                            logo-source = "<?php echo EMO_LA_URI."assets/images/logo.png" ?>"
+                            logo-source = "<?php echo $logoData->src ?>"
                         >
                             Set defualt logo
                         </p>
