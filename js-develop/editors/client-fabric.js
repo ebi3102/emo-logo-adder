@@ -10,10 +10,15 @@ function clientFabric(logoSrc){
     canvasDom.setAttribute('id', 'canvas');
     canvasDom.width = uploadedLogoData.canvasData.width;
     canvasDom.height = uploadedLogoData.canvasData.height;
+
     for(let item of wooImgWrapper){
-        console.log(item);
-        item.innerHTML = '';
-        item.append(canvasDom);
+        
+        let wooPhotoTrigger = document.getElementsByClassName('woocommerce-product-gallery__trigger')
+        for(let trigger of wooPhotoTrigger){
+            trigger.style.display = 'none';
+        }
+        item.firstElementChild.innerHTML = '';
+        item.firstElementChild.append(canvasDom);
     }
     // fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderAll())
 

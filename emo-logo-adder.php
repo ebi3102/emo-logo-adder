@@ -48,8 +48,8 @@ $fileInfo= array(
 
 global $canvasData;
 $canvasData = array(
-    "width"=>416,
-    "height" => 415
+    "width"=>280,
+    "height" => 280
 );
 
 if ( ! function_exists( 'emo_la_init' ) ) {
