@@ -30,6 +30,10 @@ class EMO_LA_Client_Editor_Icon
         ?>
         <div class="emo-editor-icon">
             <img id="clientLogoUploader" src="<?php echo EMO_LA_URI."assets/icons/active-icon.svg" ?>" alt="">
+            <div>
+                <div id="saveBtn" class="emo-btn primary client-save">save</div>
+            
+            </div>
         </div>
 
         <?php //Modal ?>

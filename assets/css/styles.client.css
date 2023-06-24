@@ -27,3 +27,5 @@
 .loaded-logo{height: 100%; margin: 5px auto !important;}
 
 .set-custom-logo-container{display: none; width: 500px; margin: 100px auto; background-color: #fff; position: relative; padding: 20px 10px;}
+
+.client-save{width: fit-content; margin-top: 10px; display: none;}
