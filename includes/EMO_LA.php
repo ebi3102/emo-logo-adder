@@ -12,6 +12,7 @@ use EMO_LA\EMO_LA_Editor_MetaBox;
 use EMO_LA\EMO_LA_Client_Editor_Icon;
 use EMO_LA\Controllers\EMO_LA_Admin_Save;
 use EMO_LA\Controllers\EMO_LA_Logo_Uploader;
+use EMO_LA\EMO_LA_Admin_Settings;
 
 final class EMO_LA
 {
@@ -47,6 +48,7 @@ final class EMO_LA
 		new EMO_LA_Admin_Save();
 		new EMO_LA_Client_Editor_Icon();
 		new EMO_LA_Logo_Uploader();
+		new EMO_LA_Admin_Settings();
     }
 
     public function __construct()
