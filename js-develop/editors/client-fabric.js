@@ -5,11 +5,20 @@ import 'fabric-customise-controls';
 import { customiseControls, customiseCornerIcons } from "../controllers/icon-controls";
 
 function clientFabric(logoSrc){
+    //Add canvas to single product page
     let wooImgWrapper = document.getElementsByClassName('woocommerce-product-gallery__wrapper');
     let canvasDom = document.createElement('canvas');
     canvasDom.setAttribute('id', 'canvas');
     canvasDom.width = uploadedLogoData.canvasData.width;
     canvasDom.height = uploadedLogoData.canvasData.height;
+
+    // var saveBtn = document.createElement('div');
+    // saveBtn.classList.add('emo-btn', 'primary', 'client-save');
+    // saveBtn.textContent = "Save";
+
+    // var loadingImg = document.createElement('img');
+    // loadingImg.src = uploadedLogoData.loadingSrc;
+    // loadingImg.classList.add('loading-image');
 
     for(let item of wooImgWrapper){
         
@@ -20,8 +29,17 @@ function clientFabric(logoSrc){
         item.firstElementChild.innerHTML = '';
         item.firstElementChild.append(canvasDom);
     }
-    fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderAll())
 
+    saveBtn.style.display = "block";
+
+    // let emoEditorIcon = document.getElementsByClassName('emo-editor-icon');
+    // for( let elem of emoEditorIcon){
+    //     elem.append(saveBtn);
+    //     // elem.append(loadingImg);
+    // }
+
+
+    fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderAll())
     // Create a Fabric.js canvas instance
     const canvas = new fabric.Canvas('canvas');
 
@@ -58,9 +76,9 @@ function clientFabric(logoSrc){
       saveData = event.target;
     });
     
-    // document.getElementById('emoSaveEditor').addEventListener('click', ()=>{
-    //   saveCanvasAsImage()
-    // });
+    saveBtn.addEventListener('click', ()=>{
+      saveCanvasAsImage()
+    });
 
     // Save the canvas as an image
     function saveCanvasAsImage() {
@@ -68,33 +86,74 @@ function clientFabric(logoSrc){
             format: 'png',
             quality: 1
         });
-    
         const resultImage = new Image();
         resultImage.src = image;
+
+        // The data that must be sent to the server
+        // 1- New canvas image
+        // 2- The save data
+        // 3- post id
+
+
         var data = new FormData();
-        let jsonSaveData = JSON.parse(JSON.stringify(saveData))
-        jsonSaveData.backgroundImg = canvasData.background;
-        data.append('action', 'emo_la_admin_save');
-        data.append('postID', emoSaveEditor.getAttribute('data_id'));
-        data.append('nonce', emoSaveEditor.getAttribute('data-nonce'));
-        data.append('logoData', JSON.stringify(jsonSaveData));
-        loadingImg.style.display = 'block';
-        fetch( wp_pageviews_ajax.ajax_url,{
-        method: "POST",
-        credentials: 'same-origin',
-        body: data
-        })
-        .then((response) => response.text())
-        .then((data) => {
-        if (data) {
-            loadingImg.style.display = 'none';
-            noticeContainer.innerHTML = data; 
+        console.log(saveData);
+        if(saveData == 'undefined' || !saveData){
+            let jsonSaveData = logoData;
+            
+        }else{
+            let jsonSaveData = JSON.parse(JSON.stringify(saveData));
         }
-        })
-        .catch((error) => {
-        alert(error);
-        console.error(error);
-        });
+        
+        jsonSaveData.backgroundImg = canvasData.background;
+        // data.append('action', 'emo_la_client_save');
+        // data.append('nonce', uploadedLogoData.nonce);
+        // data.append('logoImage', file);
+        // data.append('PostID', uploadedLogoData.postID);
+        // data.append('logoData', JSON.stringify(jsonSaveData));
+
+        /**
+         * Send data to local storage
+         */
+
+        let storageData = localStorage.getItem("emoEditorData");
+        if(!storageData){
+            storageData = {
+                [uploadedLogoData.postID]: {
+                    logoData: jsonSaveData,
+                    newImage: resultImage,
+                    PostID: uploadedLogoData.postID
+                }
+            }
+        }else{
+            localStorage.removeItem("emoEditorData");
+            storageData = JSON.parse(localStorage);
+            storageData[uploadedLogoData.postID] = {
+                logoData: jsonSaveData,
+                newImage: resultImage,
+                PostID: uploadedLogoData.postID
+            }
+        }
+        localStorage.setItem('emoEditorData',  JSON.stringify(storageData))
+        console.log('Save Data: ',jsonSaveData);
+        console.log('Image: ',resultImage);
+        // console.log('Local Storage: ', localStorage.getItem("emoEditorData") );
+        // loadingImg.style.display = 'block';
+        // fetch( wp_pageviews_ajax.ajax_url,{
+        // method: "POST",
+        // credentials: 'same-origin',
+        // body: data
+        // })
+        // .then((response) => response.text())
+        // .then((data) => {
+        // if (data) {
+        //     loadingImg.style.display = 'none';
+        //     noticeContainer.innerHTML = data; 
+        // }
+        // })
+        // .catch((error) => {
+        // alert(error);
+        // console.error(error);
+        // });
     }
 
 }
