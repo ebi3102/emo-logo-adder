@@ -38,10 +38,15 @@ class EMO_LA_Admin_Settings
     public function emo_la_printed_settings_callback(){}
 
     public function emo_la_monochrome_print_callback(){
-        echo "monochrome product";
+        $options = get_option('monochrome_print');
+	    echo '<lable for="monochrome_print"><input type= "text" id="monochrome_print" name="monochrome_print" value="'.$options.'" placeholder="'.__('Product id','emo_la').'"></lable>';
+        echo "<p>".__('Put the id of the product that has been assigned for monochrom print.','emo_la')."</p>";
+
     }
 
     public function emo_la_bichrome_print_callback(){
-        echo "bichrome product";
+        $options = get_option('bichrome_print');
+	    echo '<lable for="bichrome_print"><input type= "text" id="bichrome_print" name="bichrome_print" value="'.$options.'" placeholder="'.__('Product id','emo_la').'"></lable>';
+        echo "<p>".__('Put the id of the product that has been assigned for bichrom print.','emo_la')."</p>";
     }
 }
