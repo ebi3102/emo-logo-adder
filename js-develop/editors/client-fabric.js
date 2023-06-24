@@ -96,14 +96,13 @@ function clientFabric(logoSrc){
 
 
         var data = new FormData();
-        console.log(saveData);
-        if(saveData == 'undefined' || !saveData){
-            let jsonSaveData = logoData;
-            
-        }else{
-            let jsonSaveData = JSON.parse(JSON.stringify(saveData));
-        }
         
+        if(saveData == 'undefined' || !saveData){
+            var jsonSaveData = logoData;
+        }else{
+            var jsonSaveData = JSON.parse(JSON.stringify(saveData));
+        }
+        console.log(jsonSaveData);
         jsonSaveData.backgroundImg = canvasData.background;
         // data.append('action', 'emo_la_client_save');
         // data.append('nonce', uploadedLogoData.nonce);
@@ -120,7 +119,7 @@ function clientFabric(logoSrc){
             storageData = {
                 [uploadedLogoData.postID]: {
                     logoData: jsonSaveData,
-                    newImage: resultImage,
+                    newImage: image,
                     PostID: uploadedLogoData.postID
                 }
             }
