@@ -52,6 +52,14 @@ $canvasData = array(
     "height" => 280
 );
 
+global $defualtLogoData;
+$defualtLogoData = array(
+    "left" => 50,
+    "top" => 100,
+    "scaleX" => 0.3,
+    "scaleY" => 0.3
+);
+
 if ( ! function_exists( 'emo_la_init' ) ) {
 	add_action( 'plugins_loaded', 'emo_la_init', 11 );
 
