@@ -42,13 +42,13 @@ function save_to_local(saveData, logoData ){
             }
         }
     }else{
-        localStorage.removeItem("emoEditorData");
-        storageData = JSON.parse(localStorage);
+        storageData = JSON.parse(storageData);
         storageData[uploadedLogoData.postID] = {
             logoData: jsonSaveData,
             newImage: resultImage,
             PostID: uploadedLogoData.postID
         }
+        localStorage.removeItem("emoEditorData");
     }
     localStorage.setItem('emoEditorData',  JSON.stringify(storageData))
     console.log('Save Data: ',jsonSaveData);
