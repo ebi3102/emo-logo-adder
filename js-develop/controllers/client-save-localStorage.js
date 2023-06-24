@@ -7,10 +7,10 @@ function save_to_local(saveData, logoData ){
     const resultImage = new Image();
     resultImage.src = image;
 
-    // The data that must be sent to the server
-    // 1- New canvas image
-    // 2- The save data
-    // 3- post id
+    /**
+     * TODO: Add two new variation to the single product
+     * TODO: Hook the new variations and local storage data to the order and cart
+     */
 
 
     var data = new FormData();
