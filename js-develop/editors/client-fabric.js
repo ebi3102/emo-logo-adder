@@ -1,8 +1,8 @@
 export{clientFabric}
 
 import { fabric } from "fabric";
-// import 'fabric-customise-controls';
-// import { customiseControls, customiseCornerIcons } from "../controllers/icon-controls";
+import 'fabric-customise-controls';
+import { customiseControls, customiseCornerIcons } from "../controllers/icon-controls";
 
 function clientFabric(logoSrc){
     let wooImgWrapper = document.getElementsByClassName('woocommerce-product-gallery__wrapper');
@@ -20,7 +20,7 @@ function clientFabric(logoSrc){
         item.firstElementChild.innerHTML = '';
         item.firstElementChild.append(canvasDom);
     }
-    // fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderAll())
+    fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderAll())
 
     // Create a Fabric.js canvas instance
     const canvas = new fabric.Canvas('canvas');
@@ -46,5 +46,55 @@ function clientFabric(logoSrc){
         canvas.add(img2);
         canvas.setActiveObject(img2);
       });
+
+    canvas.on('selection:created', function(event) {
+        const activeObject = event.target;
+        activeObject.hasBorders = true;
+        activeObject.hasControls = true;
+        activeObject.customiseCornerIcons( customiseCornerIcons,()=>canvas.renderAll());
+    });
+    
+    canvas.on("object:modified", (event)=>{
+      saveData = event.target;
+    });
+    
+    // document.getElementById('emoSaveEditor').addEventListener('click', ()=>{
+    //   saveCanvasAsImage()
+    // });
+
+    // Save the canvas as an image
+    function saveCanvasAsImage() {
+        const image = canvas.toDataURL({
+            format: 'png',
+            quality: 1
+        });
+    
+        const resultImage = new Image();
+        resultImage.src = image;
+        var data = new FormData();
+        let jsonSaveData = JSON.parse(JSON.stringify(saveData))
+        jsonSaveData.backgroundImg = canvasData.background;
+        data.append('action', 'emo_la_admin_save');
+        data.append('postID', emoSaveEditor.getAttribute('data_id'));
+        data.append('nonce', emoSaveEditor.getAttribute('data-nonce'));
+        data.append('logoData', JSON.stringify(jsonSaveData));
+        loadingImg.style.display = 'block';
+        fetch( wp_pageviews_ajax.ajax_url,{
+        method: "POST",
+        credentials: 'same-origin',
+        body: data
+        })
+        .then((response) => response.text())
+        .then((data) => {
+        if (data) {
+            loadingImg.style.display = 'none';
+            noticeContainer.innerHTML = data; 
+        }
+        })
+        .catch((error) => {
+        alert(error);
+        console.error(error);
+        });
+    }
 
 }
