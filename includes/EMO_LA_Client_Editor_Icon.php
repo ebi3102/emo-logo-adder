@@ -5,6 +5,7 @@
 namespace EMO_LA;
 
 use EMO_LA\Utils\EMO_LA_Inject_JS_Client;
+use EMO_LA\Utils\EMO_LA_Icons_Render;
 class EMO_LA_Client_Editor_Icon
 {
     public function __construct()
@@ -21,6 +22,10 @@ class EMO_LA_Client_Editor_Icon
         global $post;
         $uploadedLogoData = new EMO_LA_Inject_JS_Client($post, 'client-scripts');
         $uploadedLogoData->render();
+        //Add Logo and Icons detailes
+        $canvasDate = new EMO_LA_Icons_Render($post, 'client-scripts');
+        echo $canvasDate->render();
+
         $logoData = json_decode( get_post_meta( $post->ID, EMO_LA_LOGO_DATA, true ));
         ?>
         <div class="emo-editor-icon">
