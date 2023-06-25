@@ -36,9 +36,33 @@ class EMO_LA_Inject_JS_Client
         );
     }
 
+    private function options_data()
+    {
+        $monochrome = wc_get_product( get_option('monochrome_print') );
+        $bichrome = wc_get_product( get_option('bichrome_print') );
+        return array(
+            "monochropPrint" => array(
+                "id"=> get_option('monochrome_print'),
+                "title"=> $monochrome->get_name(),
+                "price" =>$monochrome->get_price()
+
+            ),
+            "bichromPrint" => array(
+                "id"=> get_option('bichrome_print'),
+                "title"=> $bichrome->get_name(),
+                "price" =>$bichrome->get_price()
+
+            )
+        );
+    }
+
     public function render()
     {
-        $data = array_merge($this->ajax_data(), $this->canvas_data());
+        $data = array_merge(
+            $this->ajax_data(), 
+            $this->canvas_data(),
+            $this->options_data()
+        );
         wp_localize_script( $this->scriptName, 'uploadedLogoData', $data);
         
     }
