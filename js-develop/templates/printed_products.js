@@ -9,16 +9,25 @@ function hook_printed_products(){
     label.setAttribute('for', 'printedProductsList');
     label.textContent = 'Print';
     div.appendChild(label);
-    selectList.appendChild(option_template(null,'Select one'));
-    selectList.appendChild(option_template(12,'monochrome print'));
-    selectList.appendChild(option_template(11,'bichrome print'));
+    selectList.appendChild(option_template('','Select one', ''));
+    selectList.appendChild(option_template(
+        uploadedLogoData.monochropPrint.id,
+        uploadedLogoData.monochropPrint.title,
+        uploadedLogoData.monochropPrint.price
+    ));
+    selectList.appendChild(option_template(
+        uploadedLogoData.bichromPrint.id,
+        uploadedLogoData.bichromPrint.title,
+        uploadedLogoData.bichromPrint.price
+    ));
     div.appendChild(selectList);
     return div;
 }
 
-function option_template(optionValue, optionText){
+function option_template(optionValue, optionText, optionPrice){
     let option = document.createElement('option');
     option.value = optionValue;
+    option.setAttribute('data-price', optionPrice);
     option.textContent = optionText;
     return option;
 }
