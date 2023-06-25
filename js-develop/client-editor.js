@@ -34,6 +34,9 @@ setToEditorContainer.addEventListener('click', function(event) {
     }
 });
 
+/**
+ * Add Printed product price in below of select list
+ */
 var cartForm = document.querySelector('form.cart');
 cartForm.addEventListener('click', function(event) {
     if (event.target.getAttribute('id') == 'printedProductsList') {

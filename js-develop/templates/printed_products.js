@@ -2,6 +2,7 @@ export{hook_printed_products}
 
 function hook_printed_products(){
     let div = document.createElement('div');
+    div.setAttribute('id', 'printProductSelect');
     div.classList.add('print-products-container')
     let selectList = document.createElement('select');
     selectList.setAttribute('id', 'printedProductsList');

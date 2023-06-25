@@ -74,6 +74,8 @@ function clientFabric(logoSrc){
          * Add two new variation to the single product
          */
         let cartForm = document.querySelector('form.cart');
-        cartForm.prepend( hook_printed_products());
+        if(!cartForm.querySelector("#printProductSelect")){
+            cartForm.prepend( hook_printed_products());
+        } 
     });
 }
