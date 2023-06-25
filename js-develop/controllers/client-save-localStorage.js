@@ -14,7 +14,6 @@ function save_to_local(saveData, logoData ){
     }else{
         var jsonSaveData = JSON.parse(JSON.stringify(saveData));
     }
-    console.log(jsonSaveData);
     jsonSaveData.backgroundImg = canvasData.background;
 
     /**
