@@ -13,14 +13,6 @@ function clientFabric(logoSrc){
     canvasDom.width = uploadedLogoData.canvasData.width;
     canvasDom.height = uploadedLogoData.canvasData.height;
 
-    // var saveBtn = document.createElement('div');
-    // saveBtn.classList.add('emo-btn', 'primary', 'client-save');
-    // saveBtn.textContent = "Save";
-
-    // var loadingImg = document.createElement('img');
-    // loadingImg.src = uploadedLogoData.loadingSrc;
-    // loadingImg.classList.add('loading-image');
-
     for(let item of wooImgWrapper){
         
         let wooPhotoTrigger = document.getElementsByClassName('woocommerce-product-gallery__trigger')
@@ -32,13 +24,6 @@ function clientFabric(logoSrc){
     }
 
     saveBtn.style.display = "block";
-
-    // let emoEditorIcon = document.getElementsByClassName('emo-editor-icon');
-    // for( let elem of emoEditorIcon){
-    //     elem.append(saveBtn);
-    //     // elem.append(loadingImg);
-    // }
-
 
     fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderAll())
     // Create a Fabric.js canvas instance
@@ -78,6 +63,10 @@ function clientFabric(logoSrc){
     });
     
     saveBtn.addEventListener('click', ()=>{
+        /**
+         * TODO: Add two new variation to the single product
+         * TODO: Hook the new variations and local storage data to the order and cart
+         */
         save_to_local(saveData, logoData );
     });
 }
