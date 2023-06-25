@@ -29,3 +29,6 @@
 .set-custom-logo-container{display: none; width: 500px; margin: 100px auto; background-color: #fff; position: relative; padding: 20px 10px;}
 
 .client-save{width: fit-content; margin-top: 10px; display: none;}
+
+.print-products-container{margin: 10px auto;}
+.print-products-container label{display: block;}

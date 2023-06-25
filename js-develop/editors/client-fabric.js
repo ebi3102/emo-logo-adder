@@ -4,6 +4,7 @@ import { fabric } from "fabric";
 import 'fabric-customise-controls';
 import { customiseControls, customiseCornerIcons } from "../controllers/icon-controls";
 import { save_to_local } from "../controllers/client-save-localStorage";
+import { hook_printed_products } from "../templates/printed_products";
 
 function clientFabric(logoSrc){
     //Add canvas to single product page
@@ -68,5 +69,11 @@ function clientFabric(logoSrc){
          * TODO: Hook the new variations and local storage data to the order and cart
          */
         save_to_local(saveData, logoData );
+        
+        /**
+         * Add two new variation to the single product
+         */
+        let cartForm = document.querySelector('form.cart');
+        cartForm.prepend( hook_printed_products());
     });
 }
