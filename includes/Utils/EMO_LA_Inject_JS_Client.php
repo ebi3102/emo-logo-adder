@@ -44,14 +44,15 @@ class EMO_LA_Inject_JS_Client
             "monochropPrint" => array(
                 "id"=> get_option('monochrome_print'),
                 "title"=> $monochrome->get_name(),
-                "price" =>$monochrome->get_price()
+                "price" =>$monochrome->get_price(),
+                "priceHTML" => $monochrome->get_price_html()
 
             ),
             "bichromPrint" => array(
                 "id"=> get_option('bichrome_print'),
                 "title"=> $bichrome->get_name(),
-                "price" =>$bichrome->get_price()
-
+                "price" =>$bichrome->get_price(),
+                "priceHTML" => $bichrome->get_price_html()
             )
         );
     }

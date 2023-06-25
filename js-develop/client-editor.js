@@ -34,3 +34,23 @@ setToEditorContainer.addEventListener('click', function(event) {
     }
 });
 
+var cartForm = document.querySelector('form.cart');
+cartForm.addEventListener('click', function(event) {
+    if (event.target.getAttribute('id') == 'printedProductsList') {
+        if(event.target.value){
+            let queryID = `option[id='${event.target.value}']`;
+            let option = event.target.querySelector(queryID);
+            const priceHTML = option.getAttribute('data-price');
+            let priceContainer = document.querySelector('#priceContainer');
+            if(priceContainer){
+                priceContainer.innerHTML = '';
+                priceContainer.innerHTML = priceHTML;
+            }else{
+                priceContainer = document.createElement('div');
+                priceContainer.setAttribute('id', 'priceContainer');
+                priceContainer.innerHTML = priceHTML;
+                event.target.parentNode.insertBefore(priceContainer, event.target.nextSibling);
+            }   
+        }
+    }
+});

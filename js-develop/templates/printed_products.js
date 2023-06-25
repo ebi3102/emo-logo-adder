@@ -13,12 +13,12 @@ function hook_printed_products(){
     selectList.appendChild(option_template(
         uploadedLogoData.monochropPrint.id,
         uploadedLogoData.monochropPrint.title,
-        uploadedLogoData.monochropPrint.price
+        uploadedLogoData.monochropPrint.priceHTML
     ));
     selectList.appendChild(option_template(
         uploadedLogoData.bichromPrint.id,
         uploadedLogoData.bichromPrint.title,
-        uploadedLogoData.bichromPrint.price
+        uploadedLogoData.bichromPrint.priceHTML
     ));
     div.appendChild(selectList);
     return div;
@@ -28,6 +28,7 @@ function option_template(optionValue, optionText, optionPrice){
     let option = document.createElement('option');
     option.value = optionValue;
     option.setAttribute('data-price', optionPrice);
+    option.setAttribute('id', optionValue);
     option.textContent = optionText;
     return option;
 }
