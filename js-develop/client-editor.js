@@ -22,6 +22,9 @@ dropContainer.addEventListener('drop', drop);
 // End of Upload section
 
 //Set Logo to editor
+/**
+ * TODO: Fix the bug of variation
+ */
 var setToEditorContainer = document.getElementById('popupScreenLocker');
 setToEditorContainer.addEventListener('click', function(event) {
     if (event.target.classList.contains('set-to-editor')) {
