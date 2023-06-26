@@ -39,9 +39,9 @@ class EMO_LA_Add_To_Cart
             // if ( $found )
             //     WC()->cart->add_to_cart( $this->printedProductID );
         }
-        echo "<pre>";
-        var_dump(sizeof(WC()->cart->get_cart()));
-        echo "</pre>";
+        // echo "<pre>";
+        // var_dump(sizeof(WC()->cart->get_cart()));
+        // echo "</pre>";
         // else {
         //     // if no products in cart, add it
         //     WC()->cart->add_to_cart( $product_id );
