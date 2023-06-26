@@ -53,7 +53,8 @@ cartForm.addEventListener('click', function(event) {
                 priceContainer.setAttribute('id', 'priceContainer');
                 priceContainer.innerHTML = priceHTML;
                 event.target.parentNode.insertBefore(priceContainer, event.target.nextSibling);
-            }   
+            }
+            document.cookie = "printedProduct=" +  event.target.value;
         }
     }
 });
