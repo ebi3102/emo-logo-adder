@@ -55,6 +55,7 @@ cartForm.addEventListener('click', function(event) {
                 event.target.parentNode.insertBefore(priceContainer, event.target.nextSibling);
             }
             document.cookie = "printedProduct=" +  event.target.value;
+            document.cookie = "printedProductParent="+ uploadedLogoData.postID;
         }
     }
 });
