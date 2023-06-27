@@ -9,6 +9,7 @@ class EMO_LA_Add_To_Cart
     public function __construct()
     {
         add_action('woocommerce_add_to_cart', array($this, 'add_to_cart_printed_product'));
+        add_action('init', array($this, 'unset_cookie'));
     }
 
     // Scenarios:
@@ -41,16 +42,7 @@ class EMO_LA_Add_To_Cart
             if ( $foundParent && !$foundPinted )
                 WC()->cart->add_to_cart( $this->printedProductID );
         }
-        echo "<pre>";
-        var_dump(sizeof(WC()->cart->get_cart()));
-        echo "</pre>";
-        echo "<pre>";
-        var_dump($foundParent);
-        echo "</pre>";
-        // else {
-        //     // if no products in cart, add it
-        //     WC()->cart->add_to_cart( $product_id );
-        // }
+     
 
         $this->unset_cookie();
         
@@ -63,7 +55,7 @@ class EMO_LA_Add_To_Cart
         $this->printedProductID = $_COOKIE["printedProduct"];
     }
 
-    private function unset_cookie()
+    public function unset_cookie()
     {
         setcookie("printedProductParent", "", time() - 3600);
         setcookie("printedProduct", "", time() - 3600);
