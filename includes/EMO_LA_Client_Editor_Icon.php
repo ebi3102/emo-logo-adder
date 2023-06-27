@@ -20,7 +20,7 @@ class EMO_LA_Client_Editor_Icon
     public function editor_template()
     { 
         global $post;
-        if(!get_post_meta( $this->postObject->ID, EMO_LA_LOGO_DATA, true ))
+        if(!get_post_meta( $post->ID, EMO_LA_LOGO_DATA, true ))
             return;
         $uploadedLogoData = new EMO_LA_Inject_JS_Client($post, 'client-scripts');
         $uploadedLogoData->render();
