@@ -25,23 +25,28 @@ class EMO_LA_Add_To_Cart
         }
             
         
-        $found = false;
-        
+        $foundParent = false;
+        $foundPinted = false;       
         //check if product already in cart
         if ( sizeof( WC()->cart->get_cart() ) > 0 ) {
             foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
                 $_product = $values['data'];
                 if ( $_product->id == $this->parentProductID )
-                    // WC()->cart->add_to_cart( $this->printedProductID );
-                    $found = true;
+                    $foundParent = true;
+
+                if($_product->id == $this->printedProductID)
+                    $foundPinted = true;
             }
-            // if product not found, add it
-            // if ( $found )
-            //     WC()->cart->add_to_cart( $this->printedProductID );
+
+            if ( $foundParent && !$foundPinted )
+                WC()->cart->add_to_cart( $this->printedProductID );
         }
-        // echo "<pre>";
-        // var_dump(sizeof(WC()->cart->get_cart()));
-        // echo "</pre>";
+        echo "<pre>";
+        var_dump(sizeof(WC()->cart->get_cart()));
+        echo "</pre>";
+        echo "<pre>";
+        var_dump($foundParent);
+        echo "</pre>";
         // else {
         //     // if no products in cart, add it
         //     WC()->cart->add_to_cart( $product_id );
