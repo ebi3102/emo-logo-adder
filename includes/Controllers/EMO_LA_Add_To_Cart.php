@@ -5,6 +5,7 @@ class EMO_LA_Add_To_Cart
 {
     private $parentProductID;
     private $printedProductID;
+    private $qtyNumbere;
 
     public function __construct()
     {
@@ -25,7 +26,6 @@ class EMO_LA_Add_To_Cart
             return;
         }
             
-        
         $foundParent = false;
         $foundPinted = false;       
         //check if product already in cart
@@ -53,12 +53,14 @@ class EMO_LA_Add_To_Cart
     {
         $this->parentProductID = $_COOKIE["printedProductParent"];
         $this->printedProductID = $_COOKIE["printedProduct"];
+        $this->qtyNumbere = $_COOKIE['qtyNumbere'];
     }
 
     public function unset_cookie()
     {
         setcookie("printedProductParent", "", time() - 3600);
         setcookie("printedProduct", "", time() - 3600);
+        setcookie("qtyNumbere", "", time() - 3600);
     }
 
     private function essential_checker()
