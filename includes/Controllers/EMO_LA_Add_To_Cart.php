@@ -19,11 +19,15 @@ class EMO_LA_Add_To_Cart
     // In each referesh the cookies must be nusetted
     public function add_to_cart_printed_product()
     {
+        if (!function_exists('wc')) {
+            require_once(EMO_LA_DIR.'/woocommerce/wp-load.php');
+            WC()->init();
+        }
         global $woocommerce;
         $this->field_setter();
         if(!$this->essential_checker()){
             $this->unset_cookie();
-            return;
+            // return;
         }
             
         $foundParent = false;
@@ -39,14 +43,32 @@ class EMO_LA_Add_To_Cart
                     $foundPinted = true;
             }
 
-            if ( $foundParent && !$foundPinted )
-                WC()->cart->add_to_cart( $this->printedProductID );
+            // if ( $foundParent && !$foundPinted ){
+            if ( $foundParent){
+                if($foundPinted){
+                    // if($this->qtyNumbere){
+                        // WC()->cart->set_quantity( $this->printedProductID , $this->qtyNumbere );
+                    // }else{
+                        WC()->cart->set_quantity( $this->printedProductID, 1 );
+                    // }
+                }else{
+                    if($this->qtyNumbere){
+                        WC()->cart->add_to_cart( $this->printedProductID , $this->qtyNumbere );
+                    }else{
+                        WC()->cart->add_to_cart( $this->printedProductID );
+                    }
+                }
+                echo "</pre>";
+                var_dump($foundParent);
+                echo "</pre>";
+                echo "</pre>";
+                var_dump($foundPinted);
+                echo "</pre>";
+                
+            }
+                
         }
-     
-
-        $this->unset_cookie();
-        
-
+        $this->unset_cookie();  
     }
 
     private function field_setter()
