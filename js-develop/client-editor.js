@@ -59,3 +59,11 @@ cartForm.addEventListener('click', function(event) {
         }
     }
 });
+
+/**
+ * Get the quantity number from qty input
+ */
+var qtyNumberelem = document.querySelector('input.qty');
+qtyNumberelem.addEventListener('change', function(e){
+    document.cookie = "qtyNumbere"+ qtyNumberelem.value;
+});
