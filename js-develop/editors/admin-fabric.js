@@ -19,10 +19,9 @@ function adminFabric(backgroundUrl, imgId){
 
     // All canvas data store in this variable
     var saveData;
-    var logoData = canvasData.logoData[imgId]? canvasData.logoData[imgId]:canvasData.logoData;
-    console.log(logoData);
+    var logoData = (!canvasData.logoData[imgId] || canvasData.logoData[imgId] == 'undefined')? canvasData.defaultLogoData : canvasData.logoData[imgId];
     const image1Url = backgroundUrl;
-    const image2Url = logoData.src ? logoData.src: canvasData.defaultLogo;
+    const image2Url = logoData.src;
 
     fabric.Image.fromURL(image1Url, function(img1) {
         // add background image
@@ -53,7 +52,7 @@ function adminFabric(backgroundUrl, imgId){
         var imageUrl = selectedImage.toJSON().url;
         fabric.Image.fromURL(imageUrl, function(img3) {
             img3.name = "logo";
-            img3.set(JSON.parse(logoData));
+            img3.set(logoData);
             canvas.add(img3);
 
             var object = canvas.getActiveObject();
@@ -89,7 +88,4 @@ function adminFabric(backgroundUrl, imgId){
         jsonSaveData.backgroundImg = backgroundUrl;
         saveCanvasData(jsonSaveData, imgId);
     });
-
-
-
 }
