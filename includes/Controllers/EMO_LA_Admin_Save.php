@@ -7,6 +7,7 @@ class EMO_LA_Admin_Save
     private $postID;
     private $nonce;
     private $logoData;
+    private $imageID;
 
     public function __construct()
     {
@@ -19,6 +20,7 @@ class EMO_LA_Admin_Save
         $this->postID = EMO_LA_Request_Handler::get_post( 'postID' );
         $this->nonce = EMO_LA_Request_Handler::get_post( 'nonce' );
         $this->logoData = EMO_LA_Request_Handler::get_post( 'logoData' );
+        $this->imageID = EMO_LA_Request_Handler::get_post( 'imgID' );
     }
 
     private function nonce_checker()
@@ -35,8 +37,16 @@ class EMO_LA_Admin_Save
         $this->field_setter();
         $this->nonce_checker();
 
-        $updateMeta = update_post_meta($this->postID, EMO_LA_LOGO_DATA, $this->logoData);
+        $savedData = json_decode(stripslashes(get_post_meta($this->postID, EMO_LA_LOGO_DATA, true)),true );
+        $logoData = json_decode(stripslashes($this->logoData), true );
 
+        if($savedData){
+            $savedData[$this->imageID] = $logoData;
+        }else{
+            $savedData = array($this->imageID => $logoData);
+        }
+        delete_post_meta($this->postID, EMO_LA_LOGO_DATA);
+        $updateMeta = update_post_meta($this->postID, EMO_LA_LOGO_DATA, stripslashes(json_encode($savedData)));
         if($updateMeta){
             echo "<div class='emo-notice success'>Congratulations, the logo data has been successfully updated.</div>";
         }else{
