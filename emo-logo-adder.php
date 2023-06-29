@@ -54,12 +54,13 @@ $canvasData = array(
     "height" => 280
 );
 
-global $defualtLogoData;
-$defualtLogoData = array(
+global $defaultLogoData;
+$defaultLogoData = array(
     "left" => 50,
     "top" => 100,
     "scaleX" => 0.3,
-    "scaleY" => 0.3
+    "scaleY" => 0.3,
+    "src" => EMO_LA_URI."assets/images/logo.png"
 );
 
 if ( ! function_exists( 'emo_la_init' ) ) {
