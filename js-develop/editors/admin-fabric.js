@@ -19,9 +19,10 @@ function adminFabric(backgroundUrl, imgId){
 
     // All canvas data store in this variable
     var saveData;
-    var logoData = canvasData.logoData[imgId];
+    var logoData = canvasData.logoData[imgId]? canvasData.logoData[imgId]:canvasData.logoData;
+    console.log(logoData);
     const image1Url = backgroundUrl;
-    const image2Url = logoData.src ? logoData.src: canvasData.logo;
+    const image2Url = logoData.src ? logoData.src: canvasData.defaultLogo;
 
     fabric.Image.fromURL(image1Url, function(img1) {
         // add background image

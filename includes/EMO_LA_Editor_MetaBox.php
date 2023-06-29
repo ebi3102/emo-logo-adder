@@ -9,7 +9,7 @@ class EMO_LA_Editor_MetaBox
     public function __construct()
     {
         add_action( 'admin_init', array($this, 'add_metabox') );
-        add_action( 'save_post', array($this, 'save_metabox'), 10, 2 );
+//        add_action( 'save_post', array($this, 'save_metabox'), 10, 2 );
     }
     public function add_metabox()
     {
@@ -25,7 +25,6 @@ class EMO_LA_Editor_MetaBox
 
     public function metabox_callback($post)
     {
-
         global $canvasData;
         echo "<div class='thumbnails-container'>";
         $this->thumbnails_template($post);
@@ -73,7 +72,6 @@ class EMO_LA_Editor_MetaBox
                 $image_url = wp_get_attachment_url( $attachment_id );
                 echo "<img data-id='".$attachment_id."' class='thumbnail-editor' src='". $image_url."'>";
             }
-        }       
-        
+        }
     }
 }

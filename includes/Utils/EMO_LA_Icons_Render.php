@@ -34,7 +34,7 @@ class EMO_LA_Icons_Render
         global $canvasData; 
         return array(
             "defaultLogo" => EMO_LA_URI."assets/images/logo.png",
-            "logoData" => (!$logoData || $logoData == 'undefined')? json_encode($defualtLogoData) : $logoData,
+            "logoData" => (!$logoData || $logoData == 'undefined')? $defualtLogoData : $logoData,
             "canvasData" =>$canvasData
         );
     }
