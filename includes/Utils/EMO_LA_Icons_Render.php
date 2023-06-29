@@ -30,11 +30,15 @@ class EMO_LA_Icons_Render
     public function imageRender()
     {
         $logoData = get_post_meta( $this->postObject->ID, EMO_LA_LOGO_DATA, true );
-        global $defualtLogoData;    
+        global $defualtLogoData;   
+        global $canvasData; 
         return array(
-            "background" => get_the_post_thumbnail_url($this->postObject),
-            "logo" =>(!$logoData || $logoData == 'undefined')? EMO_LA_URI."assets/images/logo.png" : json_decode($logoData)->src,
-            "logoData" => (!$logoData || $logoData == 'undefined')? json_encode($defualtLogoData) : $logoData
+            // "background" => get_the_post_thumbnail_url($this->postObject),
+            // "logo" =>(!$logoData || $logoData == 'undefined')? EMO_LA_URI."assets/images/logo.png" : json_decode($logoData)->src,
+            "logo" => EMO_LA_URI."assets/images/logo.png",
+            // "logoData" => (!$logoData || $logoData == 'undefined')? json_encode($defualtLogoData) : $logoData,
+            "logoData" => json_encode($defualtLogoData),
+            "canvasData" =>$canvasData
         );
     }
 
