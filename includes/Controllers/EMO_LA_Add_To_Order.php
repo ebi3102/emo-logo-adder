@@ -9,7 +9,9 @@ class EMO_LA_Add_To_Order
     public function __construct()
     {
         add_filter('woocommerce_checkout_create_order', array($this, 'emo_add_data_to_order'), 10, 1);
-        
+
+        // $logoEditorData = json_decode( get_post_meta(70, EMO_LA_ORDER_META, true));
+        // $logoOrderData = json_decode(get_post_meta(70, "test_order_data", true));
     }
 
     private function field_setter()
@@ -22,7 +24,7 @@ class EMO_LA_Add_To_Order
         if (isset($this->emoEditorData)) {
             $myData = sanitize_text_field($this->emoEditorData);
             $order->update_meta_data(EMO_LA_ORDER_META, $myData);
-            $order->update_meta_data('test_order_data', json_encode($order->get_items()));
+            // $order->update_meta_data('test_order_data', json_encode($order->get_items()));
             $order->save();
         }
         return $order;
