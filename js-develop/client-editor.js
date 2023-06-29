@@ -36,6 +36,8 @@ setToEditorContainer.addEventListener('click', function(event) {
 
 /**
  * Add Printed product price in below of select list
+ * 
+ * TODO: use save_item_local to add printed product and its qty to local storage
  */
 var cartForm = document.querySelector('form.cart');
 cartForm.addEventListener('click', function(event) {
