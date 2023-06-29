@@ -50,7 +50,6 @@ function adminFabric(backgroundUrl, imgId){
         var selectedImage = mediaLibrary.state().get('selection').first();
         var imageUrl = selectedImage.toJSON().url;
         fabric.Image.fromURL(imageUrl, function(img3) {
-            console.log
             img3.name = "logo";
             img3.set(JSON.parse(canvasData.logoData));
             canvas.add(img3);
@@ -86,7 +85,7 @@ function adminFabric(backgroundUrl, imgId){
             var jsonSaveData = JSON.parse(JSON.stringify(saveData));
         }
         jsonSaveData.backgroundImg = canvasData.background;
-
+        jsonSaveData = {[imgId]:jsonSaveData};
         saveCanvasData(jsonSaveData);
     });
 
