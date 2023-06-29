@@ -31,6 +31,8 @@ define('EMO_LA_UPLOAD_DIR', $upload_base['basedir'] . '/emo_la/uploadedFiles/');
 define('EMO_LA_CREATED_URI', $upload_base['baseurl'] . '/emo_la/CreatedFiles/');
 define('EMO_LA_UPLOAD_URI', $upload_base['baseurl'] . '/emo_la/uploadedFiles/');
 
+define('EMO_LA_ORDER_META', 'emo_editor_data_order');
+
 //Define metaboxes
 define('EMO_LA_LOGO_DATA', 'emo_logo_data');
 
