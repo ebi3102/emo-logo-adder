@@ -30,12 +30,11 @@ class EMO_LA_Icons_Render
     public function imageRender()
     {
         $logoData =json_decode(get_post_meta( $this->postObject->ID, EMO_LA_LOGO_DATA, true ), true);
-        global $defualtLogoData;   
+        global $defaultLogoData;   
         global $canvasData; 
         return array(
-            "defaultLogo" => EMO_LA_URI."assets/images/logo.png",
-            "defaultLogoData" => $defualtLogoData,
-            "logoData" => (!$logoData || $logoData == 'undefined')? $defualtLogoData : $logoData,
+            "defaultLogoData" => $defaultLogoData,
+            "logoData" => (!$logoData || $logoData == 'undefined')? $defaultLogoData : $logoData,
             "canvasData" =>$canvasData
         );
     }
