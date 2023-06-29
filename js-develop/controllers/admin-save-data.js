@@ -18,10 +18,12 @@ function saveCanvasData(saveData, imgId){
         if (data) {
           loadingImg.style.display = 'none';
           noticeContainer.innerHTML = data;
+            setTimeout( ()=>location.reload(),1000)
         }
       })
       .catch((error) => {
         alert(error);
         console.error(error);
+          setTimeout( ()=>location.reload(),1000)
       });
 }

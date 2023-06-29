@@ -45,7 +45,6 @@ class EMO_LA_Admin_Save
         }else{
             $savedData = array($this->imageID => $logoData);
         }
-        delete_post_meta($this->postID, EMO_LA_LOGO_DATA);
         $updateMeta = update_post_meta($this->postID, EMO_LA_LOGO_DATA, stripslashes(json_encode($savedData)));
         if($updateMeta){
             echo "<div class='emo-notice success'>Congratulations, the logo data has been successfully updated.</div>";
