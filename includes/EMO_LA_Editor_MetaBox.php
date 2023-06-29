@@ -33,8 +33,8 @@ class EMO_LA_Editor_MetaBox
             $this->thumbnails_template($post);
             echo "</div>";
             ?>
-            <div class="popup-screen-locker">
-                <div class="popup-editor-container" style="width:<?php echo $canvasData['width'].'px' ?>">
+            <div id="popupScreenLocker" class="popup-screen-locker">
+                <div id="popupEditorContainer" class="popup-editor-container" style="width:<?php echo $canvasData['width'].'px' ?>">
                     <div>
                         <div id="emoClose" class="close-icon">&#10005;</div>
                         <?php 
@@ -42,12 +42,13 @@ class EMO_LA_Editor_MetaBox
                         $canvasDate = new EMO_LA_Icons_Render($post, 'emo-image-editor');
                         echo $canvasDate->render();
                         ?>
-                        <canvas
+                        <!-- <canvas
                             id="canvas"
-                            width="<?php echo $canvasData['width'] ?>"
-                            height="<?php echo $canvasData['height'] ?>"
+                            width="<?php // echo $canvasData['width'] ?>"
+                            height="<?php // echo $canvasData['height'] ?>"
                             style="border:1px solid #000000; margin:auto;">
-                        </canvas>
+                        </canvas> -->
+                        <div id="canvasContainer"></div>
                         <div class="btn-container">
                             <div id="emoUploadlogo" class="emo-btn primary">Upload new logo</div>
                             <div
@@ -75,7 +76,7 @@ class EMO_LA_Editor_MetaBox
     private function thumbnails_template($post)
     {
         if(has_post_thumbnail($post)){
-            echo "<img class='thumbnail-editor' src='".get_the_post_thumbnail_url($post)."'>";
+            echo "<img data-id='".get_post_thumbnail_id()."' class='thumbnail-editor' src='".get_the_post_thumbnail_url($post)."'>";
         }
         $product = wc_get_product( $post->ID );
         $attachment_ids = $product->get_gallery_image_ids();
@@ -83,7 +84,7 @@ class EMO_LA_Editor_MetaBox
         if(count($attachment_ids) >0 ){
             foreach( $attachment_ids as $attachment_id ){
                 $image_url = wp_get_attachment_url( $attachment_id );
-                echo "<img class='thumbnail-editor' src='". $image_url."'>";
+                echo "<img data-id='".$attachment_id."' class='thumbnail-editor' src='". $image_url."'>";
             }
         }       
         
