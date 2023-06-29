@@ -85,8 +85,8 @@ function adminFabric(backgroundUrl, imgId){
             var jsonSaveData = JSON.parse(JSON.stringify(saveData));
         }
         jsonSaveData.backgroundImg = canvasData.background;
-        jsonSaveData = {[imgId]:jsonSaveData};
-        saveCanvasData(jsonSaveData);
+        // jsonSaveData = {[imgId]:jsonSaveData};
+        saveCanvasData(jsonSaveData, imgId);
     });
 
 

@@ -1,13 +1,13 @@
 export {saveCanvasData}
 
-function saveCanvasData(saveData){
+function saveCanvasData(saveData, imgId){
       var data = new FormData();
       data.append('action', 'emo_la_admin_save');
       data.append('postID', emoSaveEditor.getAttribute('data_id'));
       data.append('nonce', emoSaveEditor.getAttribute('data-nonce'));
+      data.append('imgID', imgId);
       data.append('logoData', JSON.stringify(saveData));
       loadingImg.style.display = 'block';
-      console.log(data);
       fetch( wp_pageviews_ajax.ajax_url,{
         method: "POST",
         credentials: 'same-origin',

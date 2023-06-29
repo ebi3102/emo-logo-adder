@@ -9,6 +9,7 @@ for (let item of imgsBtn) {
         canvasContainer.innerHTML = '';
         adminFabric(this.src, this.getAttribute('data-id'));
         popupScreenLocker.style.display = 'block';
+        noticeContainer.innerHTML = '';
     });
 }
 
