@@ -14,6 +14,7 @@ use EMO_LA\Controllers\EMO_LA_Admin_Save;
 use EMO_LA\Controllers\EMO_LA_Logo_Uploader;
 use EMO_LA\EMO_LA_Admin_Settings;
 use EMO_LA\Controllers\EMO_LA_Add_To_Cart;
+use EMO_LA\Controllers\EMO_LA_Add_To_Order;
 
 final class EMO_LA
 {
@@ -51,6 +52,7 @@ final class EMO_LA
 		new EMO_LA_Logo_Uploader();
 		new EMO_LA_Admin_Settings();
 		new EMO_LA_Add_To_Cart();
+		new EMO_LA_Add_To_Order();
     }
 
     public function __construct()
