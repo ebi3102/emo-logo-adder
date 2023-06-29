@@ -42,12 +42,6 @@ class EMO_LA_Editor_MetaBox
                         $canvasDate = new EMO_LA_Icons_Render($post, 'emo-image-editor');
                         echo $canvasDate->render();
                         ?>
-                        <!-- <canvas
-                            id="canvas"
-                            width="<?php // echo $canvasData['width'] ?>"
-                            height="<?php // echo $canvasData['height'] ?>"
-                            style="border:1px solid #000000; margin:auto;">
-                        </canvas> -->
                         <div id="canvasContainer"></div>
                         <div class="btn-container">
                             <div id="emoUploadlogo" class="emo-btn primary">Upload new logo</div>
