@@ -29,6 +29,9 @@ class EMO_LA_Editor_MetaBox
         if(has_post_thumbnail($post)){
             global $canvasData;
             echo "<button id='addEditorPopUp'>{$btnText}</button>";
+            echo "<div class='thumbnails-container'>";
+            $this->thumbnails_template($post);
+            echo "</div>";
             ?>
             <div class="popup-screen-locker">
                 <div class="popup-editor-container" style="width:<?php echo $canvasData['width'].'px' ?>">
@@ -69,8 +72,20 @@ class EMO_LA_Editor_MetaBox
         }
     }
 
-    public function save_metabox($post_id, $post)
+    private function thumbnails_template($post)
     {
+        if(has_post_thumbnail($post)){
+            echo "<img class='thumbnail-editor' src='".get_the_post_thumbnail_url($post)."'>";
+        }
+        $product = wc_get_product( $post->ID );
+        $attachment_ids = $product->get_gallery_image_ids();
+
+        if(count($attachment_ids) >0 ){
+            foreach( $attachment_ids as $attachment_id ){
+                $image_url = wp_get_attachment_url( $attachment_id );
+                echo "<img class='thumbnail-editor' src='". $image_url."'>";
+            }
+        }       
         
     }
 }
