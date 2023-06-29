@@ -63,8 +63,12 @@ class EMO_LA_Enqueue
     public function client_enqueue_scripts($hook)
     {
         wp_register_script('client-scripts', EMO_LA_URI.'assets/js/clientEditor.js',array('jquery'),'1.0.0', true);
+        wp_register_script('order-scripts', EMO_LA_URI.'assets/js/scripts.order.js',array(),'1.0.0', true);
         if ( function_exists( 'is_product' ) && is_product() ){
             wp_enqueue_script('client-scripts');
+        }
+        if(is_checkout()){
+            wp_enqueue_script('order-scripts');
         }
 
     }
