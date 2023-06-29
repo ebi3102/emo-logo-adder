@@ -3,6 +3,7 @@ export {adminFabric}
 import { fabric } from "fabric";
 import 'fabric-customise-controls';
 import { customiseControls, customiseCornerIcons } from "../controllers/icon-controls";
+import {saveCanvasData} from "../controllers/admin-save-data";
 
 function adminFabric(backgroundUrl, imgId){
     let canvasDom = document.createElement('canvas');
@@ -38,12 +39,57 @@ function adminFabric(backgroundUrl, imgId){
         canvas.setActiveObject(img2);
       });
 
+    const admin_upload_logo = (e)=>{
+      e.preventDefault();
+      var mediaLibrary = wp.media({
+          title: 'Select an Image',
+          multiple: false
+      });
+
+      mediaLibrary.on('select', function() {
+        var selectedImage = mediaLibrary.state().get('selection').first();
+        var imageUrl = selectedImage.toJSON().url;
+        fabric.Image.fromURL(imageUrl, function(img3) {
+            console.log
+            img3.name = "logo";
+            img3.set(JSON.parse(canvasData.logoData));
+            canvas.add(img3);
+
+            var object = canvas.getActiveObject();
+            canvas.remove(object);
+
+            canvas.setActiveObject(img3);
+          });
+      });
+
+      mediaLibrary.open();
+    }
+
+    emoUploadlogo.onclick = admin_upload_logo;
+
+
     canvas.on('selection:created', function(event) {
         const activeObject = event.target;
         activeObject.hasBorders = true;
         activeObject.hasControls = true;
         activeObject.customiseCornerIcons( customiseCornerIcons,()=>canvas.renderAll());
     });
+
+    canvas.on("object:modified", (event)=>{
+        saveData = event.target;
+    });
+
+    document.getElementById('emoSaveEditor').addEventListener('click', ()=>{
+        if(saveData == 'undefined' || !saveData){
+            var jsonSaveData = canvasData.logoData;
+        }else{
+            var jsonSaveData = JSON.parse(JSON.stringify(saveData));
+        }
+        jsonSaveData.backgroundImg = canvasData.background;
+
+        saveCanvasData(jsonSaveData);
+    });
+
 
 
 }
