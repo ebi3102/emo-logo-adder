@@ -3,8 +3,11 @@ import { clientFabric } from "./editors/client-fabric";
 
 // Upload section
 clientLogoUploader.onclick = ()=>{
-    popupScreenLocker.style.display = 'block';
-    popupUploadContainer.style.display = 'block';
+    let figure = document.querySelector('figure.woocommerce-product-gallery__wrapper');
+    let activeSrc = figure.querySelector('div.flex-active-slide').querySelector('a').href;
+
+    // popupScreenLocker.style.display = 'block';
+    // popupUploadContainer.style.display = 'block';
 };
 
 let closeBtn = document.getElementsByClassName('close-icon');
