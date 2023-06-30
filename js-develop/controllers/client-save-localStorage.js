@@ -6,8 +6,7 @@ function save_to_local(canvas, saveData, logoData, activeImageID ){
     });
     const resultImage = new Image();
     resultImage.src = image;
-
-    var data = new FormData();
+console.log(resultImage);
 
     if(saveData == 'undefined' || !saveData){
         var jsonSaveData = JSON.parse(JSON.stringify(logoData));
@@ -36,13 +35,13 @@ function save_to_local(canvas, saveData, logoData, activeImageID ){
             storageData[uploadedLogoData.postID] = {
                 [activeImageID]: {
                     logoData: jsonSaveData,
-                    newImage: resultImage
+                    newImage: image
                 }
             }
         }else{
             storageData[uploadedLogoData.postID][activeImageID] = {
                 logoData: jsonSaveData,
-                newImage: resultImage
+                newImage: image
             }
         }
         localStorage.removeItem("emoEditorData");

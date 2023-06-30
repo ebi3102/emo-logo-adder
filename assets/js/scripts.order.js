@@ -12,17 +12,34 @@
 var formCheckout = document.querySelector('form[name=checkout]');
 var localData = localStorage.getItem('emoEditorData');
 
-
 var hiddenInput = document.createElement('input');
 hiddenInput.type = 'hidden';
 hiddenInput.name = 'emoEditorData';
 
+var logosData = {};
+var images = []
+objLocalData = JSON.parse(localData);
+for (const postID in objLocalData) {
+    logosData[postID] = {};
+    for(imageID in objLocalData[postID]){
+        logosData[postID][imageID] = objLocalData[postID][imageID].logoData;
+        images.push(objLocalData[postID][imageID].newImage)
+    }
+}
 
-// var imageElemInput = document.createElement('input');
-// imageElemInput.name =  'imageData';
-// imageElemInput.type = 'hidden';
+var logosElemInput = document.createElement('input');
+logosElemInput.name =  'logoData';
+logosElemInput.type = 'hidden';
+logosElemInput.value = logosData;
 
-hiddenInput.value = localData;
+var imageElemInput = document.createElement('input');
+imageElemInput.name =  'imageData[]';
+imageElemInput.multiple = true;
+imageElemInput.type = 'hidden';
 
-formCheckout.appendChild(hiddenInput);
-    
+imageElemInput.value = images;
+
+formCheckout.appendChild(logosElemInput);
+formCheckout.appendChild(imageElemInput);
+
+

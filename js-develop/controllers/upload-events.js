@@ -22,6 +22,7 @@ function drop(e) {
     e.target.classList.remove('drag-over');
     // get the draggable element
     const logoFile = e.dataTransfer.files[0];
+    console.log(logoFile);
     // AJAX
     fetchData(uploadedLogoData, dropContainer, noticeContainer, logoFile)
 }
