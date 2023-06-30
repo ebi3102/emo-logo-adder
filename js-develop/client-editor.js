@@ -4,7 +4,12 @@ import { clientFabric } from "./editors/client-fabric";
 // Upload section
 clientLogoUploader.onclick = ()=>{
     let figure = document.querySelector('figure.woocommerce-product-gallery__wrapper');
-    let activeSrc = figure.querySelector('div.flex-active-slide').querySelector('a').href;
+    var activeSrc;
+    if(figure.querySelector('div.flex-active-slide')){
+        activeSrc = figure.querySelector('div.flex-active-slide').querySelector('a').href;
+    }else{
+        activeSrc = figure.querySelector('div').querySelector('a').href;
+    }
     let object = canvasData.logoData;
     var activeImageID = null;
     var activeLogoSrc = null;
@@ -18,6 +23,8 @@ clientLogoUploader.onclick = ()=>{
         defaultLogoImg.src = activeLogoSrc;
         popupScreenLocker.style.display = 'block';
         popupUploadContainer.style.display = 'block';
+    }else{
+        alert('The logo editor is not active for this image');
     }
 };
 
