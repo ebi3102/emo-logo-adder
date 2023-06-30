@@ -30,6 +30,7 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
         }else{
             popupUploadContainer.style.display = 'none';
             setCustomLogoContainer.style.display = "block";
+            CustomLogoParts.style.display = "flex";
 
             var newLogo = document.createElement('img');
             newLogo.src = responseData.logSrc;
@@ -42,6 +43,7 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
                 let btn_1 = document.createElement("div");
                 btn_1.classList.add('emo-btn', 'primary', 'set-to-editor');
                 btn_1.setAttribute('logo-source', newLogo.src);
+                btn_1.setAttribute('activeimageID', setdefaultLogo.getAttribute('activeimageID'));
                 btn_1.textContent = "set with background";
                 imgContainer_1.appendChild(btn_1);
                 CustomLogoParts.appendChild(imgContainer_1);
@@ -58,6 +60,7 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
                 let btn_2 = document.createElement("div");
                 btn_2.classList.add('emo-btn', 'primary', 'set-to-editor')
                 btn_2.setAttribute('logo-source', newNOBGLogo.src);
+                btn_2.setAttribute('activeimageID', setdefaultLogo.getAttribute('activeimageID'));
                 btn_2.textContent = "set without background";
                 imgContainer_2.appendChild(btn_2);
                 CustomLogoParts.appendChild(imgContainer_2);
@@ -68,6 +71,7 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
                 var btn = document.createElement("div");
                 btn.classList.add('emo-btn', 'primary', 'set-to-editor')
                 btn.setAttribute('logo-source', newLogo.src);
+                btn.setAttribute('activeimageID', setdefaultLogo.getAttribute('activeimageID'));
                 btn.textContent = "set";
                 imgContainer.appendChild(btn);
                 CustomLogoParts.appendChild(imgContainer);

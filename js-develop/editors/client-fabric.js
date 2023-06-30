@@ -71,9 +71,9 @@ function clientFabric(logoSrc , activeImageID){
         /**
          * Add two new variation to the single product
          */
-        // let cartForm = document.querySelector('form.cart');
-        // if(!cartForm.querySelector("#printProductSelect")){
-        //     cartForm.prepend( hook_printed_products());
-        // }
+        let cartForm = document.querySelector('form.cart');
+        if(!cartForm.querySelector("#printProductSelect")){
+            cartForm.prepend( hook_printed_products());
+        }
     });
 }

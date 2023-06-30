@@ -2,6 +2,7 @@ import { drop, dragEnter, dragLeave, dragOver, fetchClick } from "./controllers/
 import { clientFabric } from "./editors/client-fabric";
 
 // Upload section
+var activeImageID = null;
 clientLogoUploader.onclick = ()=>{
     let figure = document.querySelector('figure.woocommerce-product-gallery__wrapper');
     var activeSrc;
@@ -11,7 +12,6 @@ clientLogoUploader.onclick = ()=>{
         activeSrc = figure.querySelector('div').querySelector('a').href;
     }
     let object = canvasData.logoData;
-    var activeImageID = null;
     var activeLogoSrc = null;
     for (const property in object) {
         if(object[property].backgroundImg == activeSrc){
@@ -33,6 +33,8 @@ clientLogoUploader.onclick = ()=>{
 let closeBtn = document.getElementsByClassName('close-icon');
 for (let item of closeBtn) {
     item.onclick = ()=>popupScreenLocker.style.display = 'none';
+    setCustomLogoContainer.style.display = 'none';
+    popupUploadContainer.style.display = 'none';
 }
 
 dropContainer.onclick = fetchClick;
@@ -52,6 +54,7 @@ var setToEditorContainer = document.getElementById('popupScreenLocker');
 setToEditorContainer.addEventListener('click', function(event) {
     if (event.target.classList.contains('set-to-editor')) {
         popupScreenLocker.style.display = 'none';
+        setCustomLogoContainer.style.display = 'none';
         var logoSource = event.target.getAttribute('logo-source');
         var activeImageID = event.target.getAttribute('activeImageID');
         clientFabric(logoSource , activeImageID);
