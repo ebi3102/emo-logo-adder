@@ -46,7 +46,7 @@ class EMO_LA_Client_Editor_Icon
                 <div class="upload-container">
                     <div>
                         <div id="defaultLogoContainer" class="default-logo-container">
-                            <img src="<?php echo $logoData->src ?>" alt="">
+                            <img id="defaultLogoImg" src="" alt="">
                         </div>
                     </div>
                     <div id="dropContainer" class="logo-uploader"> &#43;</div>
