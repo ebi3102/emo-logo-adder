@@ -45,7 +45,7 @@ class EMO_LA_Client_Editor_Icon
                 </div>
                 <div class="upload-container">
                     <div>
-                        <div id="defaultLogoContainer" class="defualt-logo-container">
+                        <div id="defaultLogoContainer" class="default-logo-container">
                             <img src="<?php echo $logoData->src ?>" alt="">
                         </div>
                     </div>
@@ -54,11 +54,11 @@ class EMO_LA_Client_Editor_Icon
                 <div class="upload-text-container">
                     <div>
                         <p 
-                            id="setDefualtLogo" 
+                            id="setdefaultLogo" 
                             class="emo-btn primary set-to-editor"
                             logo-source = "<?php echo $logoData->src ?>"
                         >
-                            Set defualt logo
+                            Set default logo
                         </p>
                     </div>
                     <div>
