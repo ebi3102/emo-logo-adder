@@ -56,7 +56,7 @@ class EMO_LA_Client_Editor_Icon
                         <p 
                             id="setdefaultLogo" 
                             class="emo-btn primary set-to-editor"
-                            logo-source = "<?php echo $logoData->src ?>"
+                            logo-source = ""
                         >
                             Set default logo
                         </p>

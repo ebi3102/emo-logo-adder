@@ -21,6 +21,7 @@ clientLogoUploader.onclick = ()=>{
     }
     if(activeImageID){
         defaultLogoImg.src = activeLogoSrc;
+        setdefaultLogo.setAttribute('logo-source', activeLogoSrc);
         popupScreenLocker.style.display = 'block';
         popupUploadContainer.style.display = 'block';
     }else{
