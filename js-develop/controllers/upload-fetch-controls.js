@@ -22,7 +22,6 @@ function fetchData(uploadedLogoData, dropContainer, noticeContainer, file) {
     .then((response) => response.text())
     .then((responseData) => {
     if (responseData) {
-        console.log(responseData);
         responseData = JSON.parse(responseData);
         loadingImg.remove();
         dropContainer.innerHTML = previousHTML;
