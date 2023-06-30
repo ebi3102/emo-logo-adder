@@ -61,19 +61,19 @@ function clientFabric(logoSrc , activeImageID){
       saveData = event.target;
     });
     
-    // saveBtn.addEventListener('click', ()=>{
-    //     /**
-    //      * TODO: Add two new variation to the single product
-    //      * TODO: Hook the new variations and local storage data to the order and cart
-    //      */
-    //     save_to_local(saveData, logoData, activeImageID );
-    //
-    //     /**
-    //      * Add two new variation to the single product
-    //      */
-    //     let cartForm = document.querySelector('form.cart');
-    //     if(!cartForm.querySelector("#printProductSelect")){
-    //         cartForm.prepend( hook_printed_products());
-    //     }
-    // });
+    saveBtn.addEventListener('click', ()=>{
+        /**
+         * TODO: Add two new variation to the single product
+         * TODO: Hook the new variations and local storage data to the order and cart
+         */
+        save_to_local(canvas, saveData, logoData, activeImageID );
+
+        /**
+         * Add two new variation to the single product
+         */
+        // let cartForm = document.querySelector('form.cart');
+        // if(!cartForm.querySelector("#printProductSelect")){
+        //     cartForm.prepend( hook_printed_products());
+        // }
+    });
 }

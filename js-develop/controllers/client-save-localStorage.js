@@ -1,5 +1,5 @@
 export {save_to_local, save_item_local}
-function save_to_local(saveData, logoData ){
+function save_to_local(canvas, saveData, logoData, activeImageID ){
     const image = canvas.toDataURL({
         format: 'png',
         quality: 1
@@ -8,13 +8,14 @@ function save_to_local(saveData, logoData ){
     resultImage.src = image;
 
     var data = new FormData();
-    
+
     if(saveData == 'undefined' || !saveData){
-        var jsonSaveData = logoData;
+        var jsonSaveData = JSON.parse(JSON.stringify(logoData));
+        jsonSaveData.backgroundImg = logoData.backgroundImg;
     }else{
         var jsonSaveData = JSON.parse(JSON.stringify(saveData));
+        jsonSaveData.backgroundImg = saveData.backgroundImg;
     }
-    jsonSaveData.backgroundImg = canvasData.background;
 
     /**
      * Send data to local storage
@@ -23,21 +24,31 @@ function save_to_local(saveData, logoData ){
     if(!storageData){
         storageData = {
             [uploadedLogoData.postID]: {
-                logoData: jsonSaveData,
-                newImage: image,
-                PostID: uploadedLogoData.postID
+                [activeImageID]: {
+                    logoData: jsonSaveData,
+                    newImage: image,
+                }
             }
         }
     }else{
         storageData = JSON.parse(storageData);
-        storageData[uploadedLogoData.postID] = {
-            logoData: jsonSaveData,
-            newImage: resultImage,
-            PostID: uploadedLogoData.postID
+        if(!storageData[uploadedLogoData.postID][activeImageID] || storageData[uploadedLogoData.postID][activeImageID]== 'undefined'){
+            storageData[uploadedLogoData.postID] = {
+                [activeImageID]: {
+                    logoData: jsonSaveData,
+                    newImage: image,
+                }
+            }
+        }else{
+            storageData[uploadedLogoData.postID][activeImageID] = {
+                logoData: jsonSaveData,
+                newImage: resultImage,
+            }
         }
         localStorage.removeItem("emoEditorData");
     }
     localStorage.setItem('emoEditorData',  JSON.stringify(storageData));
+    saveBtn.style.display = 'none';
 }
 
 /**
