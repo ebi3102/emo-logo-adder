@@ -10,7 +10,8 @@ class EMO_LA_Client_Editor_Icon
 {
     public function __construct()
     {
-        add_action('woocommerce_product_thumbnails', array($this, 'editor_template'), 20);
+//        add_action('woocommerce_before_single_product_summary', array($this, 'editor_template'), 30);
+        add_action('woocommerce_after_single_product_summary', array($this, 'editor_template'), 5);
         
         
     }
