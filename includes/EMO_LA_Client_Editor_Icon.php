@@ -45,7 +45,7 @@ class EMO_LA_Client_Editor_Icon
                 </div>
                 <div class="upload-container">
                     <div>
-                        <div class="defualt-logo-container">
+                        <div id="defaultLogoContainer" class="defualt-logo-container">
                             <img src="<?php echo $logoData->src ?>" alt="">
                         </div>
                     </div>
