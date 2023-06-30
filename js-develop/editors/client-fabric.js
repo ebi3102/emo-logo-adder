@@ -6,33 +6,31 @@ import { customiseControls, customiseCornerIcons } from "../controllers/icon-con
 import { save_to_local } from "../controllers/client-save-localStorage";
 import { hook_printed_products } from "../templates/printed_products";
 
-function clientFabric(logoSrc){
+function clientFabric(logoSrc , activeImageID){
     //Add canvas to single product page
-    let wooImgWrapper = document.getElementsByClassName('woocommerce-product-gallery__wrapper');
     let canvasDom = document.createElement('canvas');
-    canvasDom.setAttribute('id', 'canvas');
-    canvasDom.width = uploadedLogoData.canvasData.width;
-    canvasDom.height = uploadedLogoData.canvasData.height;
+    canvasDom.setAttribute('id', `canvas-${activeImageID}`);
+    canvasDom.width = canvasData.canvasData.width;
+    canvasDom.height = canvasData.canvasData.height;
 
-    for(let item of wooImgWrapper){
-        
-        let wooPhotoTrigger = document.getElementsByClassName('woocommerce-product-gallery__trigger')
-        for(let trigger of wooPhotoTrigger){
-            trigger.style.display = 'none';
-        }
-        item.firstElementChild.innerHTML = '';
-        item.firstElementChild.append(canvasDom);
+    let figure = document.querySelector('figure.woocommerce-product-gallery__wrapper');
+    if(figure.querySelector('div.flex-active-slide')){
+        figure.querySelector('div.flex-active-slide').innerHTML = '';
+        figure.querySelector('div.flex-active-slide').append(canvasDom);
+    }else{
+        figure.querySelector('div').innerHTML = '';
+        figure.querySelector('div').append(canvasDom);
     }
 
     saveBtn.style.display = "block";
 
     fabric.Canvas.prototype.customiseControls(customiseControls, ()=> canvas.renderAll())
     // Create a Fabric.js canvas instance
-    const canvas = new fabric.Canvas('canvas');
+    const canvas = new fabric.Canvas(`canvas-${activeImageID}`);
 
     // All canvas data store in this variable
     var saveData;
-    var logoData = JSON.parse(uploadedLogoData.logoData)
+    var logoData = canvasData.logoData[activeImageID];
     const image1Url = logoData.backgroundImg;
     const image2Url = logoSrc;
     fabric.Image.fromURL(image1Url, function(img1) {
@@ -63,19 +61,19 @@ function clientFabric(logoSrc){
       saveData = event.target;
     });
     
-    saveBtn.addEventListener('click', ()=>{
-        /**
-         * TODO: Add two new variation to the single product
-         * TODO: Hook the new variations and local storage data to the order and cart
-         */
-        save_to_local(saveData, logoData );
-        
-        /**
-         * Add two new variation to the single product
-         */
-        let cartForm = document.querySelector('form.cart');
-        if(!cartForm.querySelector("#printProductSelect")){
-            cartForm.prepend( hook_printed_products());
-        } 
-    });
+    // saveBtn.addEventListener('click', ()=>{
+    //     /**
+    //      * TODO: Add two new variation to the single product
+    //      * TODO: Hook the new variations and local storage data to the order and cart
+    //      */
+    //     save_to_local(saveData, logoData, activeImageID );
+    //
+    //     /**
+    //      * Add two new variation to the single product
+    //      */
+    //     let cartForm = document.querySelector('form.cart');
+    //     if(!cartForm.querySelector("#printProductSelect")){
+    //         cartForm.prepend( hook_printed_products());
+    //     }
+    // });
 }

@@ -22,6 +22,7 @@ clientLogoUploader.onclick = ()=>{
     if(activeImageID){
         defaultLogoImg.src = activeLogoSrc;
         setdefaultLogo.setAttribute('logo-source', activeLogoSrc);
+        setdefaultLogo.setAttribute('activeImageID', activeImageID);
         popupScreenLocker.style.display = 'block';
         popupUploadContainer.style.display = 'block';
     }else{
@@ -52,7 +53,8 @@ setToEditorContainer.addEventListener('click', function(event) {
     if (event.target.classList.contains('set-to-editor')) {
         popupScreenLocker.style.display = 'none';
         var logoSource = event.target.getAttribute('logo-source');
-        clientFabric(logoSource);
+        var activeImageID = event.target.getAttribute('activeImageID');
+        clientFabric(logoSource , activeImageID);
     }
 });
 
