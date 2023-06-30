@@ -61,7 +61,7 @@ class EMO_LA_Inject_JS_Client
     {
         $data = array_merge(
             $this->ajax_data(), 
-            $this->canvas_data(),
+//            $this->canvas_data(),
             $this->options_data()
         );
         wp_localize_script( $this->scriptName, 'uploadedLogoData', $data);
