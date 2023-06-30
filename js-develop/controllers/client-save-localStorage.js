@@ -6,7 +6,6 @@ function save_to_local(canvas, saveData, logoData, activeImageID ){
     });
     const resultImage = new Image();
     resultImage.src = image;
-console.log(resultImage);
 
     if(saveData == 'undefined' || !saveData){
         var jsonSaveData = JSON.parse(JSON.stringify(logoData));
