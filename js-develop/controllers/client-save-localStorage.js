@@ -26,23 +26,23 @@ function save_to_local(canvas, saveData, logoData, activeImageID ){
             [uploadedLogoData.postID]: {
                 [activeImageID]: {
                     logoData: jsonSaveData,
-                    newImage: image,
+                    newImage: image
                 }
             }
         }
     }else{
         storageData = JSON.parse(storageData);
-        if(!storageData[uploadedLogoData.postID][activeImageID] || storageData[uploadedLogoData.postID][activeImageID]== 'undefined'){
+        if(!storageData[uploadedLogoData.postID] || storageData[uploadedLogoData.postID]== 'undefined'){
             storageData[uploadedLogoData.postID] = {
                 [activeImageID]: {
                     logoData: jsonSaveData,
-                    newImage: image,
+                    newImage: resultImage
                 }
             }
         }else{
             storageData[uploadedLogoData.postID][activeImageID] = {
                 logoData: jsonSaveData,
-                newImage: resultImage,
+                newImage: resultImage
             }
         }
         localStorage.removeItem("emoEditorData");
