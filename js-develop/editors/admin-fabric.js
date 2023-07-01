@@ -86,6 +86,7 @@ function adminFabric(backgroundUrl, imgId){
             var jsonSaveData = JSON.parse(JSON.stringify(saveData));
         }
         jsonSaveData.backgroundImg = backgroundUrl;
+        delete jsonSaveData.width;
         saveCanvasData(jsonSaveData, imgId);
     });
 }
