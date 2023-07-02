@@ -4,6 +4,7 @@ import { clientFabric } from "./editors/client-fabric";
 // Upload section
 var activeImageID = null;
 clientLogoUploader.onclick = ()=>{
+    activeImageID = null;
     let figure = document.querySelector('figure.woocommerce-product-gallery__wrapper');
     var activeSrc;
     if(figure.querySelector('div.flex-active-slide')){
