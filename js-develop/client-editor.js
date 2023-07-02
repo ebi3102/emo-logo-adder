@@ -86,6 +86,8 @@ cartForm.addEventListener('click', function(event) {
             }
             document.cookie = "printedProduct=" +  event.target.value;
             document.cookie = "printedProductParent="+ uploadedLogoData.postID;
+            var qtyNumberelem = document.querySelector('input.qty');
+            document.cookie = `qtyNumbere=${qtyNumberelem.value}`;
         }
     }
 });
@@ -95,5 +97,5 @@ cartForm.addEventListener('click', function(event) {
  */
 var qtyNumberelem = document.querySelector('input.qty');
 qtyNumberelem.addEventListener('change', function(e){
-    document.cookie = "qtyNumbere="+ qtyNumberelem.value;
+    document.cookie = `qtyNumbere=${qtyNumberelem.value}`;
 });
