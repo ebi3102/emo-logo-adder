@@ -26,9 +26,8 @@ class EMO_LA_Add_To_Cart
             $this->unset_cookie();
             return;
         }
-            
         $foundParent = false;
-        $foundPinted = false;       
+        $foundPinted = false;    
         //check if product already in cart
         if ( sizeof( WC()->cart->get_cart() ) > 0 ) {
             foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
@@ -36,24 +35,21 @@ class EMO_LA_Add_To_Cart
                 if ( $_product->id == $this->parentProductID )
                     $foundParent = true;
 
-                if($_product->id == $this->printedProductID)
+                if($_product->id == $this->printedProductID){
                     $foundPinted = true;
                     $printed_cart_item_key = $cart_item_key;
                     $printedQty = $values['quantity'];
+                }
             }
 
             if ( $foundParent){
                 if($foundPinted){
-                    if($this->qtyNumbere){
-                        WC()->cart->set_quantity( $printed_cart_item_key, $printedQty+$this->qtyNumbere );
-                    }else{
-                        WC()->cart->set_quantity( $printed_cart_item_key, $printedQty+1 );
-                    }
+                    // if($this->qtyNumbere){
+                    //     WC()->cart->set_quantity( $printed_cart_item_key, $printedQty+$this->qtyNumbere );
+                    // }
                 }else{
                     if($this->qtyNumbere){
                         WC()->cart->add_to_cart( $this->printedProductID , $this->qtyNumbere );
-                    }else{
-                        WC()->cart->add_to_cart( $this->printedProductID );
                     }
                 }
             }
